@@ -16,12 +16,29 @@
 % Turn off change highlighting
 %\newcommand\edited[1]{#1}
 
+\newcommand{\vecI}{\mathbf{I}}
 \newcommand{\vecb}{\mathbf{b}}
+\newcommand{\vece}{\mathbf{e}}
 \newcommand{\bhat}{\mathbf{\hat b}}
+\newcommand{\rhat}{\mathbf{\hat r}}
+\newcommand{\phat}{\boldsymbol{\hat\phi}}
+\newcommand{\uhat}{\boldsymbol{\hat u}}
+\newcommand{\zhat}{\mathbf{\hat z}}
+\newcommand{\vecp}{\mathbf{p}}
 \newcommand{\vecq}{\mathbf{q}}
-\newcommand{\vcirc}{v_c}
-\newcommand{\Msun}{M_\odot}
+\newcommand{\vecr}{\mathbf{r}}
+\newcommand{\vecv}{\mathbf{v}}
+\newcommand{\vecx}{\mathbf{x}}
 
+\newcommand{\matA}{A}
+\newcommand{\matB}{B}
+
+\newcommand{\vcirc}{v_c}
+\newcommand{\vrel}{v_{\rm r}}
+\newcommand{\Msun}{M_\odot}
+\newcommand{\covm}{C}
+\newcommand{\lop}{\varpi}
+\newcommand{\Lhat}{\hat L}
 \usepackage{natbib} 
 \usepackage{amsmath}
 \usepackage{enumitem}
@@ -55,7 +72,192 @@
 
 \section{Introduction}
 
-$ \vecb\,\bhat\,\vcirc$
+We aim to calculate the Brownian motion variance to an accuracy of tens of percent.  Greater accuracy in the calculation is not warranted since one of the principal inputs---the number of MBAs vs mass---is uncertain to at least this level because of unknowns in the conversion from absolute magnitude $H$ to mass.  We will therefore be at liberty to drop terms that modify the perturbations by $O(e^2)$ of the target asteroid.  
+
+We adopt a cylindrical coordinate system $(r,\phi,z),$ with $\zhat$
+normal to the initial orbital plane, and $\phi=z=0$ toward the
+perhelion of the initial orbit, \ie\ both the initial ascending node
+$\Omega_0$ and longitude of perihelion $\lop_0$ equal to zero.  The
+unit vectors $\rhat, \phat$ rotate with the target asteroid.  The mean
+anomaly at time $t=0$ is $M_0.$
+
+All distances will be given in units of the original semimajor axis $a_0$, and all velocities in units of the circular velocity $\vcirc \equiv \sqrt{G\Msun/a_0}.$  In these units, $G\Msun=1,$ the period of the initial orbit is $2\pi$ and the (unperturbed) mean anomaly is $M=t+M_0.$ 
+
+We describe all encounters with other asteroids in the impulse approximation, defining $\vecI$ as the $\Delta\vecv$ imparted on the target by the deflector.
+In our units, the gravitational impulse imparted by a deflector of mass $M_d$ approaching at impact parameter $\vecb=b\bhat$ and relative velocity $\vrel$ is
+\begin{equation}
+  \vecI = 2 \frac{M_d}{\Msun} (bv)^{-1} \bhat.
+  \label{eq:impulse}
+\end{equation}
+All of our results will be derived at leading order in $\vecI,$ which we will find is very well justified by the small size of the Brownian motion timescales of decades.
+
+One of our tasks will be to derive, from the known asteroid population, the rate (per target) of encounters vs the imparted impulse,
+\begin{equation}
+  \frac{dN}{dt\,dI_r\,dI_\phi\,dI_z},
+  \label{eq:dN}
+\end{equation}
+where the components of $\vecI$ are given in the cylindrical basis vectors about the asteroid's position at the impulse.
+We will approximate this function as independent of the orbit of the target MBA for asteroids with $2.2??\,\AU < a < 4.2\,\AU.$  We will further assume that the impulses on a given target are drawn independently from this distribution, \ie\ a Poisson process defined by this rate.  The only properties of the impulse distribution are its second moments for components $\alpha \in \{r,\phi,z\}$
+\begin{equation}
+  \left \langle n I_\alpha^2 \right\rangle \equiv \int d^2I \frac{dN}{dt\,dI_r\,dI_\phi\,dI_z} I_\alpha^2.
+\label{eq:nvsq}
+\end{equation}
+The average of the cross terms $I_rI_z$ and $I_\phi, I_z$ will vanish if the deflector distribution is symmetric in inclination, and we will find numerically that the mean $I_rI_\phi$ is small enough to ignore.
+
+From this knowledge of the impulse distribution, our goal is to obtain the covariance matrix of the deviations in the target's observed position, relative to the initial orbit, after some time $t_{\rm obs}.$ The position observables are the range, plus the latitude and longitude of the target.  We will simplify our results by assuming a heliocentric observer, so that the observational position vector is $\vecp\equiv (r,\theta=z/r,\phi).$ The quantity we seek is the covariance matrix $\covm^p$ of the observations attributable to the accumulated gravitational perturbations:
+\begin{equation}
+  \covm^p  \equiv  \left\langle  \Delta\vecp \Delta\vecp^T\right\rangle,  \label{eq:Cp}
+\end{equation}
+where the angle brackets indicate an average over possible realizations of the impulse history, and the mean anomaly $M$ at the time of observation.  To do so, we will introduce an intermediate set of 6 parameters $\vecq$ describing the deviations of the orbital elements induced by the impulses.  The $\vecq$ components will be selected to be equal to zero before any impulses are applied, and each responds linearly to $\vecI$ at $|I|\ll 1.$
+We will derive the matrix $\matA$ that describes the orbital-element shifts at time $t$ that arise from an impulse at time $t_i$: 
+\begin{equation}
+  \Delta \vecq(t,t_i) = \matA(e_0, t, t_i) \cdot \vecI.
+  \label{eq:A}
+\end{equation}
+In our first-order perturbation theory, $\vecq(t)$ will be the sum of the $\Delta\vecq(t_i)$ imparted by all impulses applied at times $0<t_i<t.$  Because the impulses are uncorrelated, $\vecq$ will therefore be the result of a random walk.  The distribution will have a covariance matrix $\covm^q(t) \equiv \left\langle \vecq(t) \vecq^T(t) \right\rangle$ whose elements are
+\begin{eqnarray}
+  \covm^q_{jk}(e_o,t) & = & \left\langle \sum_{i,\gamma} \matA_{j\gamma}(e,t,t_i) \matA_{k\gamma}(e,t,t_i) I^2_{i,\gamma} \right\rangle \\
+           & = & \sum_\gamma \int dt_i \matA_{j\gamma}(e,t,t_i) \matA_{k\gamma}(e,t,t_i) \left\langle n I_\gamma^2\right\rangle.
+\label{eq:Cqjk}
+\end{eqnarray}
+In the first line, the sum $i$ runs over the impulses and $\gamma$ runs over the components $r,\phi,z$ of the impulse. The second line evaluates the expectation value of averaging over realizations of the random walk of impulses, exploiting the independence of the individual impulses from each other.
+
+The last element of our calculation will be a conversion from the element shifts $\vecq$ into the observed displacements $\Delta\vecp$.  In linear perturbation theory this will again be expressible as a matrix
+\begin{equation}
+  \Delta\vecp(e_0,t) = \matB(e_0,t) \cdot \vecq(t).
+\label{eq:B}
+\end{equation}
+Combining this with \eqq{eq:Cp} and \eqq{eq:Cqjk} yields the desired result
+\begin{eqnarray}
+  \covm^x_{\alpha\beta}(t,e_0) & = & \sum_{jk} B_{\alpha j}(e,t) B_{\beta k}(e,t) \covm^q_{jk}(t) \nonumber \\
+  & = & \sum_\gamma \left\langle nI_\gamma^2\right\rangle \int dt_i \left[AB(e_0,t,t_i)\right]_{\alpha\gamma}  \left[AB(e_0,t,t_i)\right]_{\beta\gamma} 
+\label{eq:ABq}
+\end{eqnarray}
+which we would wish to average over the phase of the initial mean anomaly $M_0$ of the MBA.
+With this overall strategy, we will proceed to deriving the forms of $dN/dt\,d^3I,$ $\matA(e,t,t_i),$ and $\matB(e,t).$ 
+
+\subsection{Impulse distribution}
+
+\subsection{Element shifts from impulses}
+
+Five of our orbital element perturbations $\vecq$ will be taken from constants of the motion.  The mean anomaly $M$ is not appropriate as the sixth, time-dependent element of $\vecq$ because the derivative $dM/dI$ can diverge as $e_0\rightarrow 0.$ Instead we introduce $\tau = M+\lop,$ which we will show does have a shift $\Delta\tau$ during an impulse that has finite and linear response to $\vecI$.  Between impulses, $\tau$ advances with the mean motion as $a^{-3/2}t.$  We define a coordinate system that is uniformly rotating with the unperturbed $\tau_0=t+M_0.$ The two smoothly rotating unit vectors $\uhat_\parallel=(\cos \tau_0, \sin \tau_0)$ and
+$\uhat_\perp=(-\sin \tau_0, \cos \tau_0)$ satisfy $\uhat_\parallel \times \uhat_\perp = \zhat,$ and we will use subscripts $\parallel$ and $\perp$ to represent projections onto these components.  In particular, the components of the ellipticity vector $e_\parallel$ and $e_\perp$ have the values $e_\parallel=e\cos M$ and $e_\perp=-e\sin M$ in the unperturbed orbit.
+The true anomaly $\nu,$ radius $r$, and azimuthal angle $\phi,$ and the velocity components of the initial orbit to $O(e)$ are
+\begin{eqnarray}
+  M & = & M_0 + t = \tau_0,  \nonumber \\
+  \nu & = & M - 2 e_\perp \nonumber \\
+  \phi & = & \nu + \lop = \tau - 2e_\perp, \nonumber\\
+  r & = & 1-e_\parallel, \nonumber \\
+  v_r & = & -e_\perp \nonumber \\
+  v_t & = & 1 + e_\parallel
+            \label{eq:kepler}
+\end{eqnarray}
+
+The first element adopted for $\vecq$ is the shift $\Delta a$, derivable from the orbital energy $E=-1/2a.$
+\begin{eqnarray}
+  \Delta E & = &  \vecv \cdot \vecI + O(I^2) \\
+  \quad \Rightarrow \quad \Delta a & = & 2\left(v_r I_r + v_\phi I_\phi\right) = -2e_\perp I_r + 2(1+e_\parallel) I_\phi.
+  \label{eq:da}
+\end{eqnarray}
+The initial angular momentum $\mathbf{L} = \sqrt{1-e^2}\,\zhat \approx \zhat$ is altered by
+\begin{eqnarray}
+  \Delta \mathbf{L} & = & \vecr \times \vecI = (1-e_\parallel) I_\phi \zhat - (1-e_\parallel) I_z \phat \\
+  \quad \Rightarrow \quad \Delta \Lhat_\parallel & = & -2e_\perp I_z
+  \label{eq:dLpar}\\
+  \Delta \Lhat_\perp & = & -(1-e_\parallel)  I_z
+                  \label{eq:dLperp}
+\end{eqnarray}
+We adopt the changes in direction $(\Delta\Lhat_x, \Delta\Lhat_y)$ as the next two elements of $\vecq$ specifying the inclination and ascending node $\Omega$ of the perturbed orbit.  These are a rotation of $(\Delta\Lhat_\parallel, \Delta\Lhat_\perp)$ by the angle $\tau.$  The conversion from the first line above to the subsequent two makes use of the decomposition $\phat=\uhat_\perp + 2e_\perp \uhat_\parallel$ derivable from the value of $\phi$ in Equations~(\ref{eq:kepler}).
+
+The eccentricity vector $\vece = \vecv \times (\vecr \times \vecv) - \rhat$ is altered by the impulse according to
+\begin{eqnarray}
+  \Delta\vece & = & (2\rhat - rv_r \phat) I_t - \phat I_r \\
+\label{eq:depar}
+  \quad \Rightarrow \quad \Delta e_\parallel & = &  -2e_\perp I_r + 2 I_\phi \\
+\Delta e_\perp & = & -I_r - 3e_\perp I_\phi.
+\label{eq:deperp}
+\end{eqnarray}
+We adopt $\Delta e_x$ and $\Delta e_y$ as two additional components of $\vecq,$ again related through a rotation by $\tau$ to the quantities in Equations~(\ref{eq:depar}) and (\ref{eq:deperp}).
+
+The final element of $\vecq$ will be the shift $\Delta\tau$ induced in $M+\lop$ by the impulse.  This can be obtained by enforcing the conditions that the radius $r$ or the azimuthal angle $\phi$ must remain constant during the impulse.  To findthe latter, we need a formula for $\nu(M)$ as a power series in $e.$  Standard formulae in the literature lead to:
+\begin{eqnarray}
+  \nu & = & M + 2e \sin M + \frac{5e^2}{4} \sin 2M + O(e^3) \\
+  \label{eq:nue2}
+    & = & M + 2(e\sin M) + \frac{5}{2} (e \sin M) (e \cos M) + O(e^3) 
+\end{eqnarray}
+We wish to find the first-order shift in $\phi=\nu + \lop$ and set it to zero.  But the derivatives of $M$ and $\lop$ with impulse can become infinite.  Instead we introduce a perturbation $\Delta\tau = \Delta(M+\lop).$ We can now express several post-impact quantities as deviations from the unperturbed quantities (subscripted with 0):
+\begin{eqnarray}
+  M & = & \tau-\lop = \tau_0 -\lop + \Delta\tau \\
+  e \sin M & = & e \sin (\tau_0 -\lop) + \Delta\tau \left[ e \cos  (\tau_0 -\lop)\right] \\
+    & = & -e_{0\perp}-\Delta e_\perp + e_{0\parallel} \Delta\tau +O(e^2) \\
+  e \cos M & = & e \cos (\tau_0 -\lop) - \Delta\tau \left[ e \sin  (\tau_0 -\lop)\right] \\
+    & = & e_{0\parallel}+\Delta e_\parallel + e_{0\perp} \Delta\tau +O(e^2) \\
+\Rightarrow \quad \phi =\nu+\lop & = & \tau_0 + \Delta \tau + 2( -e_{0\perp}-\Delta e_\perp + e_{0\parallel} \Delta\tau )
+                              + \frac{5}{2}\left( -e_{0\perp}\Delta e_\parallel-e_{0\parallel}\Delta e_\perp\right) + O(e^2).
+\end{eqnarray}
+Forcing $\phi$ to be unchanged during the impulse requires
+\begin{eqnarray}
+  \Delta\tau & = & \frac{5 e_\perp}{2} \Delta e_\parallel + \left(2-\frac{3e_\parallel}{2}\right) \Delta e_\perp \\
+             & = & \left(-2+\frac{3e_\parallel}{2}\right) I_r - e_\perp I_\phi.
+                   \label{eq:dtau0}
+\end{eqnarray}
+We have dropped the 0 subscripts on $e_\parallel,e_\perp$ at this point for brevity---they will refer to the values for the unperturbed orbit at the time of impulse, unless noted otherwise.
+
+After the impulse, the mean anomaly $M$ advances at a rate of $a^{-3/2}t,$ meaning that an additional term $\Delta\tau = -3\Delta a (t-t_i)/2$ accrues by time $t$. The total perturbation of $\tau$ from the nominal value $t+M_0$ becomes
+\begin{equation}
+  \Delta\tau= \left[-2+\frac{3e_\parallel}{2} +3 e_\perp (t-t_i)\right] I_r  - \left[3(1+e_\parallel)(t-t_i) + e_\perp\right] I_\phi.
+  \label{eq:dtau}
+\end{equation}
+
+This equation gives the last row of the $\matA$ matrix giving element-level perturbations from individual impulses.  The preceding equations can be restated to give the other rows:
+\begin{eqnarray}
+  \Delta a & = & -2e_\perp I_r + 2(1+e_\perp) I_\phi, \\
+  \Delta \Lhat_\parallel & = & -2e_\perp I_z \\
+  \Delta \Lhat_\perp & = & -(1-e_\parallel) I_z \\
+  \Delta e_\parallel & = &  -2e_\perp I_r + 2 I_\phi \\
+  \Delta e_\perp & = & -I_r - 3e_\perp I_\phi.
+\end{eqnarray}
+
+\subsection{Astrometric and ranging shifts from elements shifts}
+\begin{equation}
+  \label{eq:Ee2}
+  \cos E  =  e\cos M - (e \sin M)^2 + O(e^3).
+\end{equation}
+
+Keeping only terms from Equations~(\ref{eq:kepler}) up to first order in $\vecq,$ the true anomaly $\nu,$ mean anomaly $M=t + \Delta t - \lop,$ and the azimuthal angle $\phi$ are related by
+\begin{eqnarray}
+  \nu  =  M + 2e\sin M  & = & t +  2e_0 \sin t  + \Delta t - \lop + 2 e_0(\Delta t - \lop) \cos t + 2\sin t \Delta e_x \\
+  \Rightarrow \quad \phi  =  \nu + \lop & = &  \left[t + 2e_0\sin t\right] + \left[(1+2e_0\cos t) \Delta t - 2\cos t \Delta e_y + 2\sin t \Delta e_x\right]
+                                                    \label{eq:phi}
+\end{eqnarray}
+where we have used $e_0\lop = \Delta e_y.$ The radial coordinate and polar angle $\theta$ are
+\begin{eqnarray}
+  r & = & (1 + \Delta a) \left[1- (e_0+\Delta e_x) \cos M \right] \nonumber \\
+\label{eq:r}
+  & = & \left[ 1-e_0\cos t \right] + \left[ (1-e_0\cos t) \Delta a + e_0\sin t \Delta t - \sin t \Delta e_y - \cos t \Delta e_x \right] \\
+  \theta = z/r & = & -\Lhat_x \cos\phi - \Lhat_y \sin\phi \nonumber \\
+\label{eq:theta}
+               & = & \left[ 0 \right] + \left[ -\cos t \Lhat_x  - \sin t \Lhat_y\right].
+\end{eqnarray}
+The second line of each deviation is divided into two bracketed terms, the first being the initial orbit and the second being the first-order terms in elements of $\vecq,$ which are therefore the elements of $\matB$.
+
+A heliocentric observer will measure ``range noise'' of $\covm^p_{rr}=\langle (\Delta r)^2\rangle$ in the measured distance to the target asteroid.  We find this by squaring the second bracketed term for $r$ and averaging $t$ over an interval of size $2\pi$ to compensate for the fact that we have assumed $M=0$ at $t=0,$ whereas in fact the $M_0$ values are random.  We can then derive
+\begin{equation}
+  \left\langle(\Delta r)^2\right\rangle = (\Delta a)^2 + \frac{1}{2}\left[ (\Delta e_x)^2 + (\Delta e_y)^2\right] + \frac{e_0}{2}(\Delta a \Delta e_x -  \Delta t \Delta e_y).
+  \label{eq:varr}
+\end{equation}
+The same heliocentric observer will see angular shifts of the target position satisfying
+\begin{eqnarray}
+  \label{eq:phiphi}
+  \left\langle (\Delta\phi)^2\right\rangle & = & (\Delta t)^2 + 2(\Delta e_x^2 + \Delta e_y^2)  -4e_0
+  \left(\Delta t \Delta e_y\right)\\
+  \label{eq:thetatheta}
+  \left\langle (\Delta\theta)^2\right\rangle & = & \frac{1}{2} \left( \Lhat_x^2 + \Lhat_y^2\right) \\
+  \label{eq:thetaphi}
+  \left\langle \Delta\theta\Delta\phi\right\rangle & = & -e_0\Delta t \Lhat_x + (\Delta e_y \Lhat_x -  \Delta e_x \Lhat_y)
+\end{eqnarray}
+
+
 
 \section{Conclusions}
 
