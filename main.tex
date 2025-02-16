@@ -301,15 +301,26 @@ numerical integration of all of the MBA orbits available
 from the Minor Planet Center (MPC) as of ???? 2025.   We retain as
 potential deflectors the 1.26~million bodies with $1.8<a<4.2$~AU,
 observations at multiple oppositions, and uncertainty values $U\le5.$
+We designate each source as being an ``Inner'' MBA, with semi-major axes between the 4:1 and 3:1
+mean-motion resonances of Jupiter; ``Middle'' MBA between the 3:1 and
+5:2 resonances; ``Outer'' MBAs between the 5:2 and 2:1
+resonances; and the small remainder as ``Other.''  Our working
+assumption will be that the MPC objects are an unbiased sample of the
+orbital-element distribution within each of the Inner, Middle, and
+Outer belt regions.
 
-From this full MBA list, we select a subset of 5000 objects as
-``tracers'' randomly selected from the MBAs in each of three regimes:
-``Inner'' MBAs with semi-major axes between the 4:1 and 3:1
-mean-motion resonances of Jupiter; ``Middle'' MBAs between the 3:1 and
-5:2 resonances; and ``Outer'' MBAs between the 5:2 and 2:1
-resonances.  This is enough to be representative of the statistics of
-each MBA class, but few enough that the calculation can be done easily
+From this full MBA list, we select a random subset of 5000 objects
+from each of the Inner, Middle, and Outer belts to serve as a sample
+of ``tracers.''  We record all of the passages of any tracer MBA
+within 0.03~AU of any other ``deflector'' MBA (drawn from the full
+catalog of 1.26~million) over a 10-year period.  The 5000 tracers per
+belt region are enough to be representative of the statistics of
+the region, but few enough that the calculation can be done easily
 on a laptop computer.
+We will report $\langle nI_\gamma^2\rangle$
+separately for tracers of each region, allowing for the fact that a
+tracer of a given region can receive impulses from deflectors resident
+in all regions.
 
 Using a simple leapfrog integrator with gravity from the Sun and the 8
 major planets, we advance all MBA's orbits from their heliocentric
@@ -324,11 +335,9 @@ relative velocity $v,$ and the impact parameter vector $\vecb.$
 The leapfrog integrator advances all 1.26 million state vectors by 2
 days, and the process is repeated.  We continue at 2-day intervals
 until we have recorded 10 years' worth of encounters---17.7 million
-total impulses.  These events are split according to their combination
-of tracer class (Inner, Middle, or Outer belt) and deflector class
-(Inner, Middle, Outer, Other).   
+total impulses.
 
-For each type of impulse (\eg Inner-Inner), we combine the list of
+For each pair of tracer-deflector regions (\eg Inner-Inner), we combine the list of
 events with the counts of candidate tracers and deflectors to
 calculate $dn/dA\,dv,$ the event rates per eligible pair; and the mean
 geometry of the encounter, $\langle \hat b^2_\gamma \rangle,$ as a
@@ -361,7 +370,30 @@ statistical error on a typical MBA is $\sigma_M=???\, M_\odot.$
 
 $\sigma_M(H)$ rolled off at ...
 
-Asteroid counts $dN/dH$
+\begin{figure}
+  \includegraphics{mbacounts.pdf}
+  \caption{Differential counts of MBAs cataloged by the MPC are
+    plotted vs absolute magnitude $H$  
+    for the Inner, Middle, Outer, and ``Other'' regions of
+    the main belt, and for their total.  We assume that they are
+    complete for $H\le17,$ and extrapolate to fainter sources using
+    the functional form from \eqq{eq:lsstmba} shown as the dotted
+    curve.}
+  \label{fig:counts}
+\end{figure}
+
+Figure~\ref{fig:counts} plots our assumptions for $dN/dH.$  The MPC
+catalog is likely close to complete in all three regions for $H\le17,$
+so we will use the MPC counts directly in this regime.  Note that the
+three regions have similar shapes of $dN/dH.$  For $H>17,$ we adopt
+the functional form for the cumulative MBA counts given by
+initial LSST predictions \citep{LSST_science_book}:
+\begin{equation}
+  N(<H) \propto \frac{10^{0.43(H-15.7)}}{10^{0.18(H-15.7)} +
+    10^{-0.18(H-15.7)}},
+\label{eq:lsstmba}
+\end{equation}
+normalizing this curve to the observed $H<17$ counts for each region.
 
 \subsubsection{Individually detectable impulses}
 
