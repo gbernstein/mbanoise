@@ -56,7 +56,7 @@
 
 \begin{document}
 
-\title{Short-term Brownian motion of main-belt asteroids} 
+\title{Brownian motion of main-belt asteroids on human timescales} 
 
 \author[0000-0002-8613-8259]{Gary M. Bernstein}
 \affiliation{Department of Physics and Astronomy, University of Pennsylvania, Philadelphia, PA 19104, USA}
@@ -72,7 +72,66 @@
 
 \section{Introduction}
 
-We aim to calculate the Brownian motion variance to an accuracy of tens of percent.  Greater accuracy in the calculation is not warranted since one of the principal inputs---the number of MBAs vs mass---is uncertain to at least this level because of unknowns in the conversion from absolute magnitude $H$ to mass.  We will therefore be at liberty to drop terms that modify the perturbations by $O(e^2)$ of the target asteroid.  
+High-precision measurements of positions of Solar System bodies have
+great value to multiple scientific pursuits.  They can reveal
+gravitational accelerations due to undiscovered bodies such as a
+hypothetical ``Planet X'' or passing primordial black holes, determine
+the masses of known bodies, tests the laws of gravity themselves, and characterize 
+the non-gravitational forces that drive many forms of planetary
+migration, \eg\ the maintainence of the near-Earth asteroid (NEA)
+population.  While most applications of precision orbit determination
+have used the 8 major planets as test particles, there are now $>10^6$
+known minor planets available for this task, whose astrometric
+information content is growing extremely rapidly through large-scale
+survey projects such as Gaia, PanSTARRS, and particularly the upcoming
+\textit{Legacy Survey of Space and Time} (LSST), which can produce
+milliarcsecond-scale accuracy for magnitude-limited small-body populations.  The great majority
+of currently-tracked objects are main-belt asteroids (MBAs), so we
+wish to investigate the potential power of MBAs as gravitational test
+bodies.
+
+The most advanced ephemerides for the Solar System consider the
+gravitational forces emanating from the Sun, from the major planets and their large
+moons, from up to $\approx300$ of the largest individual MBAs, and
+from distributed mass annuli representing the smaller members of
+various small-body populations (asteroid belts, Kuiper belt, etc.).
+Here we ask: \textit{what is the typical RMS deviation in angular or radial
+position that a typical MBA accrues because of its gravitational
+encounters with other individual MBAs?}  We are interested not in the
+perturbations that can be well described by a multipolar ring model
+for the full population; rather the Brownian motion that accumulates
+from closer encounters either with MBAs that \emph{are not included} in the
+ephemeris model at all.  For those larger asteroids that \emph{are} included
+in an ephemeris model, we need to consider the uncertainties in
+orbital motion that accrue from the uncertainty $\sigma_M$ in their
+masses.  Any such departures became a source of noise in any
+inferences that we make from use of these MBAs as
+dynamical tracer particles.  
+
+While long-term diffusion of orbital elements has been extensively
+investigated in the context of planetary-system formation and
+planetary migration, we address here the more limited question of how
+much the MBAs will have their orbit elements and positions altered
+by Brownian motion over a time period $T \lesssim100$~yr of human
+observation, in the present dynamical environment.  We will make use
+of the currently known population of MBAs, correcting for
+incompleteness of current surveys at lower masses---or more precisely,
+at fainter absolute magnitudes $H,$ since only a handful of small
+asteroids have usefully accurate mass measures.
+
+
+\section{Calculation overview}
+We aim to calculate the Brownian motion variance to an accuracy of
+tens of percent.  Greater accuracy in the calculation is not warranted
+since one of the principal inputs---the number of MBAs vs mass---is
+uncertain to at least this level because of unknowns in the conversion
+from $H$ to mass.  We will therefore be at liberty to drop terms that
+modify the perturbations by $O(e^2)$ of the tracer asteroid that is
+being tracked.    We will assume throughout that the joint
+distribution of mass (or $H$) and orbital elements is separable into a
+mass distribution and an orbital distribution.  In this scenario, the
+Brownian motion is independent of the tracer mass, and involves an
+integral over the mass distribution of the deflecting bodies.
 
 We adopt a cylindrical coordinate system $(r,\phi,z),$ with $\zhat$
 normal to the initial orbital plane, and $\phi=z=0$ toward the
@@ -89,22 +148,31 @@ In our units, the gravitational impulse imparted by a deflector of mass $M_d$ ap
   \vecI = 2 \frac{M_d}{\Msun} (bv)^{-1} \bhat.
   \label{eq:impulse}
 \end{equation}
-All of our results will be derived at leading order in $\vecI,$ which we will find is very well justified by the small size of the Brownian motion timescales of decades.
+All of our results will be derived at leading order in $\vecI,$ which
+is very well justified by the small size of MBA-induced impulses.
 
 One of our tasks will be to derive, from the known asteroid population, the rate (per target) of encounters vs the imparted impulse,
 \begin{equation}
   \frac{dN}{dt\,dI_r\,dI_\phi\,dI_z},
   \label{eq:dN}
 \end{equation}
-where the components of $\vecI$ are given in the cylindrical basis vectors about the asteroid's position at the impulse.
-We will approximate this function as independent of the orbit of the target MBA for asteroids with $2.2??\,\AU < a < 4.2\,\AU.$  We will further assume that the impulses on a given target are drawn independently from this distribution, \ie\ a Poisson process defined by this rate.  The only properties of the impulse distribution are its second moments for components $\alpha \in \{r,\phi,z\}$
+where the components of $\vecI$ are given in the cylindrical basis
+vectors about the asteroid's position at the impulse.
+We will estimate this function from the known population,
+approximating it as constant within each of three subsets of tracer MBAs:
+the inner, middle, and outer populations bounded by the 4:1, 3:1,
+5:2, and 2:1 mean-motion resonances with Jupiter.
+We will further assume that the impulses on a given target are drawn
+independently from this distribution, \ie\ a Poisson process defined
+by this rate.  In this case, the only properties of the impulse
+distribution that we need are its second moments for components $\alpha \in \{r,\phi,z\}$
 \begin{equation}
   \left \langle n I_\alpha^2 \right\rangle \equiv \int d^2I \frac{dN}{dt\,dI_r\,dI_\phi\,dI_z} I_\alpha^2.
 \label{eq:nvsq}
 \end{equation}
-The average of the cross terms $I_rI_z$ and $I_\phi, I_z$ will vanish if the deflector distribution is symmetric in inclination, and we will find numerically that the mean $I_rI_\phi$ is small enough to ignore.
+The average of the cross terms $I_rI_z$ and $I_\phi, I_z$ will vanish if the deflector distribution is symmetric in inclination, and we find numerically that the mean $I_rI_\phi$ is small enough to ignore.
 
-From this knowledge of the impulse distribution, our goal is to obtain the covariance matrix of the deviations in the target's observed position, relative to the initial orbit, after some time $t_{\rm obs}.$ The position observables are the range, plus the latitude and longitude of the target.  We will simplify our results by assuming a heliocentric observer, so that the observational position vector is $\vecp\equiv (r,\theta=z/r,\phi).$ The quantity we seek is the covariance matrix $\covm^p$ of the observations attributable to the accumulated gravitational perturbations:
+From this knowledge of the impulse distribution, our goal is to obtain the covariance matrix of the deviations in the target's observed position, relative to the initial orbit, after some time $T.$ The position observables are the range, plus the latitude and longitude of the target.  We will simplify our results by assuming a heliocentric observer, so that the observational position vector is $\vecp\equiv (r,\theta=z/r,\phi).$ The quantity we seek is the covariance matrix $\covm^p$ of the observations attributable to the accumulated gravitational perturbations:
 \begin{equation}
   \covm^p  \equiv  \left\langle  \Delta\vecp \Delta\vecp^T\right\rangle,  \label{eq:Cp}
 \end{equation}
@@ -134,11 +202,177 @@ Combining this with \eqq{eq:Cp} and \eqq{eq:Cqjk} yields the desired result
 \label{eq:ABq}
 \end{eqnarray}
 which we would wish to average over the phase of the initial mean anomaly $M_0$ of the MBA.
-With this overall strategy, we will proceed to deriving the forms of $dN/dt\,d^3I,$ $\matA(e,t,t_i),$ and $\matB(e,t).$ 
 
-\subsection{Impulse distribution}
+Section~\ref{sec:impulse} describes the estimation of $\left\langle
+  nI_\alpha^2\right\rangle$ for MBA regions.
+Section~\ref{sec:propagation} derives the forms of $\matA(e,t,t_i),$
+and $\matB(e,t).$  Section~\ref{sec:results} combines these and
+summarizes the results and their implications.
+
+\section{Impulse distribution}
+\label{sec:impulse}
+\subsection{Derivation}
+Under the assumption that the distributions of masses and orbital
+elements of MBAs are separable, the quantities needed to describe the
+random walk of the asteroid's orbits can be expressed as an integral
+over the absolute magnitude $H$ of the deflectors, the velocity $v$,
+impact parameter $b,$ and polar/azimuthal angles $\theta,\phi$ of the
+unit vector of the impulse direction $\bhat$:
+\begin{eqnarray}
+  \left\langle I_\gamma^2 \right\rangle & = & \int
+                                              dH\,dv\,db\,d\theta\,d\phi
+                                              \frac{dn}{dH\,dv\,db\,d\theta\,d\phi}
+                                              I^2_\gamma(H,v,b,\theta\phi)
+  \\
+  & = & \int dH \frac{dN}{dH} \int dv
+        \frac{dn}{dA\,dv\,d\theta\,d\phi} \hat b_\gamma^2(\theta,\phi)
+        \int db_{b_{\rm min}}^{b_{\rm max}} 2\pi b\,db\,
+        \left(\frac{\sigma_M(H)}{bv}\right)^2 \\
+  & = & \int dH \frac{dN}{dH} \sigma_M(H)^2  \int dv
+        \frac{dn}{dA\,dv} v^{-2} \left\langle\hat b_\gamma^2(v)\right\rangle
+        2\pi \log(b_{\rm max}/b_{\rm min}).
+\end{eqnarray}
+The second row adopts the (numerically verified) assumption that the
+distribution of impact parameter $b$ will always be $\propto dA=2\pi
+b\,db$ in the range of $b$ of interest to us.  The mean rate of encounters
+between a deflector-tracer pair, as a function of the impact velocity
+and geometry is $dn/dA\,dv\,d\theta\,d\phi,$ which we will determine
+through numerical measurements with the orbits of all known MBAs. The
+$H$ distribution of MBAs is $dN/dH.$ We denote as $\sigma_M(H)$
+the RMS error in the mass of MBAs at $H$ used in the ephemeris model.
+We use $\sigma_M$ rather than $M$ since we are seeking the size of
+deviations from the ephemeris model.  For MBAs that are not included
+in the ephemeris model, $\sigma_M=M(H),$ the full mass of the deflector.
+
+In the third line, we execute the integral over $b$ and introduce the
+average geometry factors $\langle \hat b^2_\gamma\rangle$ of encounters as
+a function of $v$.  It must be true that
+\begin{equation}
+  \left\langle \hat b_r^2 \right\rangle
+  + \left\langle \hat b_\phi^2 \right\rangle
+  + \left\langle \hat b_z^2 \right\rangle = 1,
+\end{equation}
+but equality of the three is not required.
+
+For the values of $b_{\rm min}$ and $b_{\rm max},$ we adopt heuristics
+for the nature of impulses of interest.  We set $b_{\rm max}$ by the
+requiring that $b/v<1,$ such that the ``impulse'' is being applied
+over a time shorter than $1/2\pi$ of the orbital period.  Events
+lasting longer than this are either extended close encounters of 2
+MBAs with very similar orbits---which are rare and can be identified
+and modeled in advance; or they are slow, longer-range interactions
+that would be adequately modeled by a multipole model of the
+collective mass of the asteroid belts.  Thus we take $b_{\rm max}=v.$
+
+For $b_{\rm min},$ we adopt the criterion that encounters at
+sufficiently small $b$ will generate sufficiently large impulses $I$
+that observations of the tracer will detect this individual impulse at
+levels well above measurement noise.  This would mean that an
+ephemeris model could include the mass of the deflector asteroid, and
+this mass could be determined from fitting the data of the tracer.
+Fitting an ephemeris that includes all of these Individually
+detectable encounters is entirely feasible, as long as the relevant
+MBAs are known, with modestly accurate orbits.
+Such encounters would thus no longer be considered source of
+stochastic Brownian motion.  If we crudely choose some threshold
+$I_{\rm det}$ of impulse as being large enough to generate high-$S/N$
+deflections on its tracer, then our condition becomes $M(H)/bv <
+I_{\rm det},$ or $b_{\rm min}=M(H)/vI_{\rm det}.$  We then have
+\begin{equation}
+   \left\langle I_\gamma^2 \right\rangle = 
+2\pi \int dH \frac{dN}{dH} \sigma^2_M(H)  \int_{\sqrt{M(H)/I_{\rm
+      det}}}^\infty \frac{dv}{v^2} 
+        \frac{dn}{dA\,dv}  \left\langle\hat b_\gamma^2(v)\right\rangle
+        \log \left[v^2 I_{\rm det}/M(H)\right].
+        \label{eq:nI2}
+      \end{equation}
+The lower bound on the $v$ integral marks the speed below which
+$b_{\rm max}<b_{\rm min}.$
+
+\subsection{Numerical results}
+\eqq{eq:nI2} reduces the calculation to a double integral over the
+deflector $H$ distribution and the relative velocity $v.$  The
+constituents of this calculation are estimated as follows.
+
+\subsubsection{Encounter rates and geometries}
+The pairwise interaction rate $dn/dA\,dv$ and the impulse direction
+distributions $\langle \hat b^2_\gamma \rangle$ are estimated from a
+numerical integration of all of the MBA orbits available
+from the Minor Planet Center (MPC) as of ???? 2025.   We retain as
+potential deflectors the 1.26~million bodies with $1.8<a<4.2$~AU,
+observations at multiple oppositions, and uncertainty values $U\le5.$
+
+From this full MBA list, we select a subset of 5000 objects as
+``tracers'' randomly selected from the MBAs in each of three regimes:
+``Inner'' MBAs with semi-major axes between the 4:1 and 3:1
+mean-motion resonances of Jupiter; ``Middle'' MBAs between the 3:1 and
+5:2 resonances; and ``Outer'' MBAs between the 5:2 and 2:1
+resonances.  This is enough to be representative of the statistics of
+each MBA class, but few enough that the calculation can be done easily
+on a laptop computer.
+
+Using a simple leapfrog integrator with gravity from the Sun and the 8
+major planets, we advance all MBA's orbits from their heliocentric
+osculating elements at the epochs given by the MPC, to barycentric
+state vectors on 1 May 2025.  We then find all tracer-deflector pairs
+that approach within 0.03~AU of each during the $\pm1$-day period
+around this initial epoch, assuming inertial relative motion during
+this interval.  The circumstances of such encounters are saved: the
+identities of the two MBAs involved, the time of closest approach, the
+relative velocity $v,$ and the impact parameter vector $\vecb.$
+
+The leapfrog integrator advances all 1.26 million state vectors by 2
+days, and the process is repeated.  We continue at 2-day intervals
+until we have recorded 10 years' worth of encounters---17.7 million
+total impulses.  These events are split according to their combination
+of tracer class (Inner, Middle, or Outer belt) and deflector class
+(Inner, Middle, Outer, Other).   
+
+For each type of impulse (\eg Inner-Inner), we combine the list of
+events with the counts of candidate tracers and deflectors to
+calculate $dn/dA\,dv,$ the event rates per eligible pair; and the mean
+geometry of the encounter, $\langle \hat b^2_\gamma \rangle,$ as a
+function of $v$.  Figure~\ref{fig:rtz} plots these functions of $v$
+for the Inner-Inner, Middle-Middle, and Outer-Outer scattering
+events.  Here it is apparent that the $\hat b_\phi$ component is
+larger than $\hat b_z$ and $\hat b_r,$ but there is significant
+variation with MBA class and with $v$.
+
+\subsubsection{Asteroid properties}
+We crudely approximate the population as having a geometric albedo of 0.25,
+density of 2500~kg~m$^{-3},$ and spherical shapes, which leads to the
+conversion
+\begin{equation}
+  M(H) = 1.2\times10^{-17} \times 10^{-0.6(H-15)}\, M_\odot.
+\end{equation}
+
+The two largest asteroids, Ceres and Vesta, have masses determined to
+high precision by the \textit{Dawn} spacecraft.  Thus despite holding
+most of the mass of the MBAs, their $\sigma_M$ values are just ??? and
+the unknown part of their contributions to other MBA's motion are
+quite small.  Aside from a handful of other asteroids in
+well-characterized binary systems, most other knowledge of MBA masses
+comes from mutual gravitational encounters.
+\citet{negin} forecast the extent to which LSST data will be able to
+constrain the masses of individual MBAs by measuring deflections of
+the $\approx 10$ tracer asteroids they encounter most closely over the
+course of the nominal 10-year survey.  They find that the $1\sigma$
+statistical error on a typical MBA is $\sigma_M=???\, M_\odot.$
+
+$\sigma_M(H)$ rolled off at ...
+
+Asteroid counts $dN/dH$
+
+\subsubsection{Individually detectable impulses}
+
+\subsubsection{Results}
+
+
+\section{Propagation to position shifts}
+\label{sec:propagation}
 
 \subsection{Element shifts from impulses}
+\label{sec:elements}
 
 Five of our orbital element perturbations $\vecq$ will be taken from constants of the motion.  The mean anomaly $M$ is not appropriate as the sixth, time-dependent element of $\vecq$ because the derivative $dM/dI$ can diverge as $e_0\rightarrow 0.$ Instead we introduce $\tau = M+\lop,$ which we will show does have a shift $\Delta\tau$ during an impulse that has finite and linear response to $\vecI$.  Between impulses, $\tau$ advances with the mean motion as $a^{-3/2}t.$  We define a coordinate system that is uniformly rotating with the unperturbed $\tau_0=t+M_0.$ The two smoothly rotating unit vectors $\uhat_\parallel=(\cos \tau_0, \sin \tau_0)$ and
 $\uhat_\perp=(-\sin \tau_0, \cos \tau_0)$ satisfy $\uhat_\parallel \times \uhat_\perp = \zhat,$ and we will use subscripts $\parallel$ and $\perp$ to represent projections onto these components.  In particular, the components of the ellipticity vector $e_\parallel$ and $e_\perp$ have the values $e_\parallel=e\cos M$ and $e_\perp=-e\sin M$ in the unperturbed orbit.
@@ -219,6 +453,7 @@ This equation gives the last row of the $\matA$ matrix giving element-level pert
 \end{eqnarray}
 
 \subsection{Astrometric and ranging shifts from elements shifts}
+\label{sec:observe}
 \begin{equation}
   \label{eq:Ee2}
   \cos E  =  e\cos M - (e \sin M)^2 + O(e^3).
@@ -257,9 +492,8 @@ The same heliocentric observer will see angular shifts of the target position sa
   \left\langle \Delta\theta\Delta\phi\right\rangle & = & -e_0\Delta t \Lhat_x + (\Delta e_y \Lhat_x -  \Delta e_x \Lhat_y)
 \end{eqnarray}
 
-
-
-\section{Conclusions}
+\section{Results and conclusions}
+\label{sec:results}
 
 \begin{acknowledgments}
   This work was supported by NSF grant AST-????.
