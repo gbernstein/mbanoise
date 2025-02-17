@@ -337,6 +337,25 @@ days, and the process is repeated.  We continue at 2-day intervals
 until we have recorded 10 years' worth of encounters---17.7 million
 total impulses.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{isq.pdf}
+  \caption{Each panel shows statistics of the encounters between
+    tracer MBAs from one region and deflector MBAs from another.  As a
+    function of the relative velocity at impact, the three curves show
+    the mean squared value of the radial, azimuthal, and vertical
+    components of the impulse direction $\bhat.$  The horizontal
+    dashed line at value $1/3$ would be the result for isotropic
+    encounters, but we see that the azimuthal component of the impulse
+    tends to be larger, with a variety of behaviors.  The gray regions
+    trace the distribution $dN/dv$ of the rate of interactions per
+    tracer per orbit per interval in $v.$  These curves have a common
+    (arbitrary) normalization, so the relative heights properly
+    reflect the frequency of encounters between different MBA
+    regions.}
+  \label{fig:rtz}
+\end{figure}
+
 For each pair of tracer-deflector regions (\eg Inner-Inner), we combine the list of
 events with the counts of candidate tracers and deflectors to
 calculate $dn/dA\,dv,$ the event rates per eligible pair; and the mean
@@ -357,10 +376,11 @@ conversion
 
 The two largest asteroids, Ceres and Vesta, have masses determined to
 high precision by the \textit{Dawn} spacecraft.  Thus despite holding
-most of the mass of the MBAs, their $\sigma_M$ values are just ??? and
+most of the mass of the MBAs, their $\sigma_M$ values are just
+$\approx3\times10^{-15} M_\odot$ and
 the unknown part of their contributions to other MBA's motion are
 quite small.  Aside from a handful of other asteroids in
-well-characterized binary systems, most other knowledge of MBA masses
+well-characterized binary systems or visited by spacecraft, most other knowledge of MBA masses
 comes from mutual gravitational encounters.
 \citet{negin} forecast the extent to which LSST data will be able to
 constrain the masses of individual MBAs by measuring deflections of
@@ -371,7 +391,8 @@ statistical error on a typical MBA is $\sigma_M=???\, M_\odot.$
 $\sigma_M(H)$ rolled off at ...
 
 \begin{figure}
-  \includegraphics{mbacounts.pdf}
+  \centering
+  \includegraphics[width=0.8\textwidth]{mbacounts.pdf}
   \caption{Differential counts of MBAs cataloged by the MPC are
     plotted vs absolute magnitude $H$  
     for the Inner, Middle, Outer, and ``Other'' regions of
@@ -396,6 +417,18 @@ initial LSST predictions \citep{LSST_science_book}:
 normalizing this curve to the observed $H<17$ counts for each region.
 
 \subsubsection{Individually detectable impulses}
+For several \citet{negin} forecast the uncertainty $\sigma_v$ on the impulse 
+applied to each $\approx7000$ tracers using astrometric data expected from LSST
+over its 10-year duration.  The value of $\sigma_I$ depends upon the
+apparent magnitude of the tracer, the timing and geometry of the
+impulse, and the stochastic variations in the observing pattern and
+weather for LSST.
+For impulses occurring near the midpoint
+of the survey, $\approx80\%$ of all cases yield $\sigma_I<10^{-4}\,{\rm m}\,{\rm
+  s}^{-1},$ some an order of magnitude lower.  We conservatively
+assume that $I_{\rm det}=5\times 10^{-4}\,{\rm m}\,{\rm
+  s}^{-1},$ which when normalized by $v_c$ yields $I_{\rm
+  det}=10^{-8}$ at 10\% accuracy across the main belt.
 
 \subsubsection{Results}
 
