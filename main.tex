@@ -219,7 +219,7 @@ over the absolute magnitude $H$ of the deflectors, the velocity $v$,
 impact parameter $b,$ and polar/azimuthal angles $\theta,\phi$ of the
 unit vector of the impulse direction $\bhat$:
 \begin{eqnarray}
-  \left\langle I_\gamma^2 \right\rangle & = & \int
+  \left\langle n I_\gamma^2 \right\rangle & = & \int
                                               dH\,dv\,db\,d\theta\,d\phi
                                               \frac{dn}{dH\,dv\,db\,d\theta\,d\phi}
                                               I^2_\gamma(H,v,b,\theta\phi)
@@ -279,7 +279,7 @@ $I_{\rm det}$ of impulse as being large enough to generate high-$S/N$
 deflections on its tracer, then our condition becomes $M(H)/bv <
 I_{\rm det},$ or $b_{\rm min}=M(H)/vI_{\rm det}.$  We then have
 \begin{equation}
-   \left\langle I_\gamma^2 \right\rangle = 
+   \left\langle n I_\gamma^2 \right\rangle = 
 2\pi \int dH \frac{dN}{dH} \sigma^2_M(H)  \int_{\sqrt{M(H)/I_{\rm
       det}}}^\infty \frac{dv}{v^2} 
         \frac{dn}{dA\,dv}  \left\langle\hat b_\gamma^2(v)\right\rangle
@@ -298,13 +298,14 @@ constituents of this calculation are estimated as follows.
 The pairwise interaction rate $dn/dA\,dv$ and the impulse direction
 distributions $\langle \hat b^2_\gamma \rangle$ are estimated from a
 numerical integration of all of the MBA orbits available
-from the Minor Planet Center (MPC) as of ???? 2025.   We retain as
+from the Minor Planet Center (MPC) as of 6 January 2025.   We retain as
 potential deflectors the 1.26~million bodies with $1.8<a<4.2$~AU,
 observations at multiple oppositions, and uncertainty values $U\le5.$
 We designate each source as being an ``Inner'' MBA, with semi-major axes between the 4:1 and 3:1
 mean-motion resonances of Jupiter; ``Middle'' MBA between the 3:1 and
 5:2 resonances; ``Outer'' MBAs between the 5:2 and 2:1
-resonances; and the small remainder as ``Other.''  Our working
+resonances; the remaining ``Other'' objects are a small minority that
+contribute very little to the total diffusion rate, and we will ignore.  Our working
 assumption will be that the MPC objects are an unbiased sample of the
 orbital-element distribution within each of the Inner, Middle, and
 Outer belt regions.
@@ -317,15 +318,15 @@ catalog of 1.26~million) over a 10-year period.  The 5000 tracers per
 belt region are enough to be representative of the statistics of
 the region, but few enough that the calculation can be done easily
 on a laptop computer.
-We will report $\langle nI_\gamma^2\rangle$
-separately for tracers of each region, allowing for the fact that a
-tracer of a given region can receive impulses from deflectors resident
-in all regions.
+We will estimate the constituents of  $\langle nI_\gamma^2\rangle$ in
+\eqq{eq:nI2} separately for each of the nine combinations of tracers
+in Inner, Middle, and Outer regions with deflectors from each region.
 
 Using a simple leapfrog integrator with gravity from the Sun and the 8
 major planets, we advance all MBA's orbits from their heliocentric
 osculating elements at the epochs given by the MPC, to barycentric
-state vectors on 1 May 2025.  We then find all tracer-deflector pairs
+state vectors on 1 May 2025.  Using $kd$-trees to accelerate
+pair-finding, we locate all tracer-deflector pairs
 that approach within 0.03~AU of each during the $\pm1$-day period
 around this initial epoch, assuming inertial relative motion during
 this interval.  The circumstances of such encounters are saved: the
@@ -333,8 +334,8 @@ identities of the two MBAs involved, the time of closest approach, the
 relative velocity $v,$ and the impact parameter vector $\vecb.$
 
 The leapfrog integrator advances all 1.26 million state vectors by 2
-days, and the process is repeated.  We continue at 2-day intervals
-until we have recorded 10 years' worth of encounters---17.7 million
+days, and the process is repeated.  We continue searching for pairs at
+2-day intervals until we have recorded 10 years' worth of encounters---17.7 million
 total impulses.
 
 \begin{figure}
@@ -356,7 +357,7 @@ total impulses.
   \label{fig:rtz}
 \end{figure}
 
-For each pair of tracer-deflector regions (\eg Inner-Inner), we combine the list of
+For each pair of tracer-deflector regions (\eg\ Inner-Inner), we combine the list of
 events with the counts of candidate tracers and deflectors to
 calculate $dn/dA\,dv,$ the event rates per eligible pair; and the mean
 geometry of the encounter, $\langle \hat b^2_\gamma \rangle,$ as a
@@ -364,7 +365,10 @@ function of $v$.  Figure~\ref{fig:rtz} plots these functions of $v$
 for the Inner-Inner, Middle-Middle, and Outer-Outer scattering
 events.  Here it is apparent that the $\hat b_\phi$ component is
 larger than $\hat b_z$ and $\hat b_r,$ but there is significant
-variation with MBA class and with $v$.
+variation with MBA class and with $v$.  An important result is that
+the quantity $v^{-2} (dN/dA\,dv)$ is always well-behaved as $v\rightarrow 0,$
+so we do not need any special treatment to sum the integrals in
+\eqq{eq:nI2}.  The $v$ integrand peak is in the range $0.03<v/v_c<0.1.$
 
 \subsubsection{Asteroid properties}
 We crudely approximate the population as having a geometric albedo of 0.25,
@@ -373,22 +377,6 @@ conversion
 \begin{equation}
   M(H) = 1.2\times10^{-17} \times 10^{-0.6(H-15)}\, M_\odot.
 \end{equation}
-
-The two largest asteroids, Ceres and Vesta, have masses determined to
-high precision by the \textit{Dawn} spacecraft.  Thus despite holding
-most of the mass of the MBAs, their $\sigma_M$ values are just
-$\approx3\times10^{-15} M_\odot$ and
-the unknown part of their contributions to other MBA's motion are
-quite small.  Aside from a handful of other asteroids in
-well-characterized binary systems or visited by spacecraft, most other knowledge of MBA masses
-comes from mutual gravitational encounters.
-\citet{negin} forecast the extent to which LSST data will be able to
-constrain the masses of individual MBAs by measuring deflections of
-the $\approx 10$ tracer asteroids they encounter most closely over the
-course of the nominal 10-year survey.  They find that the $1\sigma$
-statistical error on a typical MBA is $\sigma_M=???\, M_\odot.$
-
-$\sigma_M(H)$ rolled off at ...
 
 \begin{figure}
   \centering
@@ -402,7 +390,7 @@ $\sigma_M(H)$ rolled off at ...
     curve.}
   \label{fig:counts}
 \end{figure}
-
+We also require the $H$ distribution of potential deflectors.
 Figure~\ref{fig:counts} plots our assumptions for $dN/dH.$  The MPC
 catalog is likely close to complete in all three regions for $H\le17,$
 so we will use the MPC counts directly in this regime.  Note that the
@@ -416,9 +404,45 @@ initial LSST predictions \citep{LSST_science_book}:
 \end{equation}
 normalizing this curve to the observed $H<17$ counts for each region.
 
+Our integral for the uncertainty due to unmodelled MBA gravitation
+requires the RMS error $\sigma_M(H)$ between the true mass $M$ and the
+mass used (if any) in the ephemeris model.
+The two largest asteroids, Ceres and Vesta, have masses determined to
+high precision by the \textit{Dawn} spacecraft.  Thus despite holding
+half of the mass of the asteroid belt, their $\sigma_M$ values are just
+$\approx3\times10^{-15} M_\odot$ and
+the unknown part of their contributions to other MBA's motion are
+quite small.  Aside from a handful of other asteroids in
+well-characterized binary systems or visited by spacecraft, most other knowledge of MBA masses
+has and will come from mutual gravitational encounters.   An
+individual asteroid's mass can be estimated from its measured effect  on the
+few MBAs on which it imparts the largest impulses.  The accuracy
+$\sigma_M$ of this determination will depend upon the geometry of
+these encounters, the measurement errors on the tracers, and the size
+of the noise from unmodelled mass that we aim to determine.  These
+factors are independent of the mass of the deflector.  We will
+assign a value $\sigma_M$ to the RMS uncertainty in MBA mass
+attainable from following a few individual tracers, and calculate
+the Brownian-motion noise as a function of $\sigma_M.$  We take
+\begin{equation}
+  \sigma_M(H) = \textrm{min}\left[ \sigma_M, M(H) \right],
+\end{equation}
+because a given MBA could have a mass determination accurate to
+$\sigma_M$ if included in the ephemeris model, or if $M(H)<\sigma_M,$
+it would be omitted from the ephemeris model.
+
+To give some context, the most recent
+comprehensive investigation of MBA masses from mutual scattering
+events was by \citet{baer}, who report typical $\sigma_M\approx
+5\times10^{-13}$ for 30 MBAs.  We can expect substantial improvement
+in the LSST era when a millions of potential tracer asteroids attain
+mas-level astrometry.
+
+
+
 \subsubsection{Individually detectable impulses}
-For several \citet{negin} forecast the uncertainty $\sigma_v$ on the impulse 
-applied to each $\approx7000$ tracers using astrometric data expected from LSST
+\citet{negin} forecast the uncertainty $\sigma_v$ on an impulse 
+applied to each of $\approx7000$ tracers using astrometric data expected from LSST
 over its 10-year duration.  The value of $\sigma_I$ depends upon the
 apparent magnitude of the tracer, the timing and geometry of the
 impulse, and the stochastic variations in the observing pattern and
@@ -559,6 +583,14 @@ The same heliocentric observer will see angular shifts of the target position sa
 
 \section{Results and conclusions}
 \label{sec:results}
+
+\citet{negin} forecast the extent to which LSST data will be able to
+constrain the masses of individual MBAs by measuring deflections of
+the $\approx 10$ tracer asteroids they encounter most closely over the
+course of the nominal 10-year survey.  They find that the $1\sigma$
+statistical error on a typical MBA is $\sigma_M=???\, M_\odot.$
+
+$\sigma_M(H)$ rolled off at ...
 
 \begin{acknowledgments}
   This work was supported by NSF grant AST-????.
