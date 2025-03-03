@@ -671,8 +671,8 @@ Rotating to $\vecq=\{a, \tau, e_x, e_y, L_x, L_y\}$ and with $\vecI=\{I_r, I_\ph
          \matA(e,T,t_i) = \left( \begin{array}{ccc}
  2e\sin\tau & 2 + 2e\cos\tau & 0 \\
  -2+e\left[1.5\cos\tau-3(T-t_i)\sin\tau\right] & e\sin\tau -3(1+e\cos\tau)(T-t_i) & 0\\
- -\cos\tau-2e\sin^2\tau & 2\cos\tau - 1.5e\sin 2\tau & 0\\
-  -\sin\tau + e\sin 2\tau & 2\sin\tau-3e\cos^2\tau & 0 \\
+ \sin\tau+e\sin 2\tau & 2\cos\tau - 3e\sin^2\tau & 0\\
+  -\cos\tau - 2e\sin^2\tau & 2\sin\tau-1.5e\sin 2\tau & 0 \\
 0 & 0 & \sin\tau + 0.5 e \sin 2\tau \\
  0 & 0 &  -\cos\tau +e(3-\cos 2\tau)/2 \\
  \end{array}\right)
@@ -687,16 +687,6 @@ We can now do the time integral and sum over impulse directions in \eqq{eq:Cqjk}
 \end{eqnarray}
 All of the off-diagonal terms (covariances) are either zero or $O\left(e\left\langle nI^2\right\rangle\right),$ and they result in observable consequences that are smaller by $\left\langle e^2 \right\rangle$ than the diagonal terms' contributions.
 
-% \begin{equation}
-%   \matC^2 = \left(\begin{array}{cccccc}
-%     4T \nIphi & -3T^2\nIphi & e\left(\nIr + 5\nIphi\right) & e\nIr & 0 & 0 \\
-% -3T^2\nIphi & 4\nIr + 3T^3\nIphi & -e(11T\nIr/4 + 15T^2\nIphi/4) & e\left[(2T-3T^2/4)\nIr+(-T+9T^2/4)\nIphi\right] & 0 & 0\\
-%  e\left(\nIr + 5\nIphi\right) & -e(11T\nIr/4 + 15T^2\nIphi/4) & \nIr/2+2\nIphi & 0 & 0 & 0 \\
-%  e\nIr &  e\left[(2T-3T^2/4)\nIr+(-T+9T^2/4)\nIphi\right]  & 0 & \nIr/2+2\nIphi & 0 & 0 \\
-% 0 & 0 & 0 & 0 & \nIz/2 & 0 \\
-% 0 & 0 & 0 & 0 & 0 \nIz/2 \\
-%\end{array}\right)
-% \end{equation}
  \subsection{Astrometric and ranging shifts from elements shifts}
 \label{sec:observe}
 The radial coordinate of a Keplerian orbit is $r=a(1-e\cos E),$ and an expansion of the eccentric anomaly $E$ in powers of $e$ is
