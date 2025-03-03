@@ -1,5 +1,5 @@
-%\documentclass[onecolumn]{aastex631}
-\documentclass[linenumbers, onecolumn]{aastex631}
+\documentclass[onecolumn]{aastex631}
+%\documentclass[linenumbers, onecolumn]{aastex631}
 
 %\defcitealias{H21}{H21}
 
@@ -339,7 +339,7 @@ a function of $v$.  It must be true that
 but equality of the three is not required.
 
 For the values of $b_{\rm min}$ and $b_{\rm max},$ we adopt heuristics
-for the nature of impulses of interest.  We set $b_{\rm max}$ by the
+for the nature of impulses of interest.  We set $b_{\rm max}$ by 
 requiring that $b/v<1,$ such that the ``impulse'' is being applied
 over a time shorter than $1/2\pi$ of the orbital period.  Events
 lasting longer than this are either extended close encounters of 2
@@ -844,7 +844,7 @@ not average down at all across observations, but measurement errors
 drop by a factor $\sqrt{M}.$   \citet{gaiafpr} report typically $\sim60$ epochs per asteroid in 66 months, suggesting $O(100)$ epochs per asteroid in the full 11-year observing period.  At Gaia's faint end, this means that Brownian noise with present asteroid knowledge would have comparable impact to the measurement errors, and dominate inferences at the bright end.  LSST will obtain several hundred epochs per asteroid.  With an effective factor 10--20 reduction in the total measurement noise, and assuming $\sigma_\phi\approx0.25$~mas Brownian noise, the latter would become important for the brighter tracer MBAs in LSST data, but inferences with the millions of fainter objects discovered by LSST would still be limited by photon noise.  The occultation program proposed by \citet{occultations} would obtain $<10$ measurements per decade for most MBAs and hence see less degradation of Brownian relative to measurement noise.
 
 At the other extreme are cases where the dominant modes of Brownian noise are orthogonal to the effects of parameters of interest.  
-If, for example, one is searching for the tidal force of a Planet X, this will be manifested primarily as a collective apsidal precession and a quadrupolar deviation of the orbit from its ellipse that does not evolve with time.  These are quite distinct from the random walk in $\Delta\tau$ that is the dominant effect of Brownian motion, and therefore Brownian noise with cause less degradation to the Planet X inference than the per-epoch $\sigma_\phi$ would suggest.  Another example would be a gravitational perturbation whose signature is primarily a nodal precession, which is a signal manifesting primarily as out-of-plane motions---we have seen that Brownian motion out of the orbital plane is $>40\times$ smaller than the $\phi$ component and grows at $T^{-1/2}$ instead of $T^{3/2},$ so the per-epoch $\sigma_\phi$ of Brownian noise will grossly overestimate its effect on the inference.
+If, for example, one is searching for the tidal force of a Planet X, this will be manifested primarily as a collective apsidal precession and a quadrupolar deviation of the orbit from its ellipse that does not evolve with time.  These are quite distinct from the random walk in $\Delta\tau$ that is the dominant effect of Brownian motion, and therefore Brownian noise will cause less degradation to the Planet X inference than the per-epoch $\sigma_\phi$ would suggest.  Another example would be a gravitational perturbation whose signature is primarily a nodal precession, which is a signal manifesting primarily as out-of-plane motions---we have seen that Brownian motion out of the orbital plane is $>40\times$ smaller than the $\phi$ component and grows at $T^{-1/2}$ instead of $T^{3/2},$ so the per-epoch $\sigma_\phi$ of Brownian noise will grossly overestimate its effect on the inference.
 
 The algorithms used to make inferences based on range or astrometric
 data will need to be changed when Brownian motion becomes a
