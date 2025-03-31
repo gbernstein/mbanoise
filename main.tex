@@ -1,5 +1,5 @@
-\documentclass[onecolumn]{aastex631}
-%\documentclass[linenumbers, onecolumn]{aastex631}
+%\documentclass[onecolumn]{aastex631}
+\documentclass[linenumbers, onecolumn]{aastex631}
 
 %\defcitealias{H21}{H21}
 
@@ -73,34 +73,60 @@
 
 
 \begin{abstract}
-  The explosion of high-precision astrometric data on main-belt
-  asteroids (MBAs) enables new
-  inferences on gravitational and non-gravitational forces present in
-  this region.  We estimate the size of MBA motions
-  caused by mutual gravitational encounters with other MBAs that are
-  either omitted from ephemeris models or have uncertain mass
-  estimates. In other words, what is the typical Brownian motion among
-  MBAs that cannot be predicted from the ephemeris, and therefore
-  serves as noise on inferences from the MBAs?  We estimate the RMS
-  azimuthal shift $\sigma_\phi$ of this ``Brownian noise''  by
-  numerical estimation of the distribution of impulse sizes and
-  directions among known MBAs, combined with analytical propagation
-  into future positional uncertainties. At current
-  levels of asteroid-mass knowledge, $\sigma_\phi$ rises to
-  $\approx2$~km or $\approx1$~mas over $T=10$~yr, increasing as
-  $T^{3/2},$  large enough to degrade many inferences from
-  Gaia and LSST MBA data. LSST data will, however, improve MBA
-  mass knowledge enough to lower this Brownian uncertainty by
-  $\ge4\times.$  Radial and vertical Brownian noise  at $T=10$~yr are
-  factors $\approx7$ and $\approx45,$ respectively,
-  lower than the azimuthal noise, and grow as $T^{3/2}$
-  and $T^{1/2}.$  For full exploitation of Gaia and
-  LSST MBA data, ephemeris models should include the
-  $\approx1000$~largest asteroids as active bodies with free masses,
-  even if not all are well constrained.  This will correctly propagate
-  the uncertainties from these 1000 sources' deflections into desired
-  inferences. The RMS value of deflections from less-massive MBAs is
-  then just $\sigma_\phi\approx60$~m or 30~$\mu$as, small enough to ignore until occultation-based position data become ubiquitously available for MBAs.
+  % The explosion of high-precision astrometric data on main-belt
+  % asteroids (MBAs) enables new
+  % inferences on gravitational and non-gravitational forces present in
+  % this region.  We estimate the size of MBA motions
+  % caused by mutual gravitational encounters with other MBAs that are
+  % either omitted from ephemeris models or have uncertain mass
+  % estimates. In other words, what is the typical Brownian motion among
+  % MBAs that cannot be predicted from the ephemeris, and therefore
+  % serves as noise on inferences from the MBAs?  We estimate the RMS
+  % azimuthal shift $\sigma_\phi$ of this ``Brownian noise''  by
+  % numerical estimation of the distribution of impulse sizes and
+  % directions among known MBAs, combined with analytical propagation
+  % into future positional uncertainties. At current
+  % levels of asteroid-mass knowledge, $\sigma_\phi$ rises to
+  % $\approx2$~km or $\approx1$~mas over $T=10$~yr, increasing as
+  % $T^{3/2},$  large enough to degrade many inferences from
+  % Gaia and LSST MBA data. LSST data will, however, improve MBA
+  % mass knowledge enough to lower this Brownian uncertainty by
+  % $\ge4\times.$  Radial and vertical Brownian noise  at $T=10$~yr are
+  % factors $\approx7$ and $\approx45,$ respectively,
+  % lower than the azimuthal noise, and grow as $T^{3/2}$
+  % and $T^{1/2}.$  For full exploitation of Gaia and
+  % LSST MBA data, ephemeris models should include the
+  % $\approx1000$~largest asteroids as active bodies with free masses,
+  % even if not all are well constrained.  This will correctly propagate
+  % the uncertainties from these 1000 sources' deflections into desired
+  % inferences. The RMS value of deflections from less-massive MBAs is
+  % then just $\sigma_\phi\approx60$~m or 30~$\mu$as, small enough to
+  % ignore until occultation-based position data become ubiquitously
+  % available for MBAs.
+%
+High-precision astrometric data on main-belt
+asteroids (MBAs) enables new
+inferences on gravitational and non-gravitational forces present in
+this region.  We estimate the typical Brownian motion due to mutual encounters among
+MBAs that cannot be predicted from the ephemeris of larger bodies, and therefore
+serves as noise on inferences from the MBAs.  The RMS
+azimuthal shift $\sigma_\phi$ of this ``Brownian noise''  is predicted
+using the distribution of known MBA orbits, combined with analytical propagation
+into future positional uncertainties. At current
+levels of asteroid-mass knowledge, $\sigma_\phi$ rises to
+$\approx2$~km or $\approx1$~mas over $T=10$~yr, increasing as
+$T^{3/2},$  large enough to degrade many inferences from
+Gaia and LSST MBA data. LSST data will, however, improve MBA
+mass knowledge enough to lower this Brownian uncertainty by
+$\ge4\times.$  Radial (vertical) Brownian noise  at $T=10$~yr is
+$\approx7\times$ ($\approx45\times$) 
+lower than the azimuthal noise.  For full exploitation of Gaia and
+LSST MBA data, ephemeris models should include the
+$\approx1000$~largest asteroids as active bodies with free masses,
+even if not all are well constrained.  This will correctly propagate
+the uncertainties from these 1000 sources' deflections into desired
+inferences. The RMS value of deflections from less-massive MBAs is
+then just $\sigma_\phi\approx60$~m or 30~$\mu$as, small enough to ignore until occultation-based position data become ubiquitously available for MBAs.
 \end{abstract}
 
 \keywords{Main belt asteroids (2036), Asteroid dynamics (2210), Astrometry (80)}
@@ -894,7 +920,17 @@ any expected effect of Brownian motion, and also very difficult to
 measure since radar ranging to MBAs is infeasible.  More important for
 observations is the
 Yarkovsky effect, in which anisotropic re-emission of the absorbed
-radiation leads to a net force that is a fraction $g_Y(1-q)$ of the incident radiation pressure.  The Yarkovsky effect has been detected for several NEAs but no individual MBAs, with values $g_Y \approx 0.1$ \citep[Yarkovsky effect and data are review by][]{yarkovsky}.  This is also consistent with detections of the Yarkovsky effect by examining the $\Delta a$ dependence on $H$ of members of asteroid \emph{families} in the Main Belt \citep[\eg][]{karin}.
+radiation leads to a net force that is a fraction $g_Y(1-q)$ of the
+incident radiation pressure.  The Yarkovsky effect has been detected
+for several NEAs but no individual MBAs, with values $g_Y \approx 0.1$
+\citep[Yarkovsky effect and data are review by][]{yarkovsky}.
+\edited{A value of $g_Y\approx0.1$ is also the largest that can be obtained
+  from a model of a spherical body with uniform surface properties and
+  Lambertian emission.} This is also consistent with detections of the
+Yarkovsky effect by examining the $\Delta a$ dependence on $H$ of
+members of asteroid \emph{families} in the Main Belt
+\citep[\eg][]{karin}.  \edited{We will assume an RMS value of $g_Y=0.05,$
+the influence of the surface absorption coefficient being $<1.$}
 
  The Yarkovsky effect has in common with Brownian noise that it has the strongest observable effects via changes to $a$ and the mean-motion rates, and that these changes can be of varying sign and amplitude for a given asteroid.  In the case of the Yarkovsky effect, this variability arises because of the random orientations of spin axes, and differences in spin rates, shapes, and surface properties.  
  
@@ -902,16 +938,30 @@ Taking a case where the Yarkovsky force is in the prograde azimuthal direction, 
 \begin{equation}
 \frac{\textrm{Yarkovsky}}{\textrm{Brownian}} = 
    \frac{\Delta\phi}{\sigma_\phi} \approx \frac{ 3 g_Y \Psi
-     T^2/2}{\sqrt{3 T^3 \nIphi}} \approx \sqrt{T/10\,{\rm yr}} \times 10^{0.2(H-20.2)}
+     T^2/2}{\sqrt{3 T^3 \nIphi}} \approx \sqrt{T/10\,{\rm yr}} \times 10^{0.2(H-12.7)}
      \label{eq:yarkovsky}
 \end{equation}
-if we assume $\nIphi$ from the current knowledge of asteroid masses.   There is thus a break point near $H=20$, or $\approx100$~m diameter: for MBAs larger than this, the ephemeris uncertainties from the Yarkovsky effect will be smaller than those from mutual gravitational encounters on decade timescales. This includes all MBAs detected by Gaia and nearly all detectable by LSST.  Below this size, the Yarkovsky displacement grows larger in a decade and has a better chance of being detectable in the presence of Brownian motion.  Distinguishing the steady quadratic growth of the Yarkovsky $\Delta\phi$ from the random-walk growth of Brownian motion to the same final size requires observational S/N and time resolution significantly better than is needed for detecting either one individually.
+\edited{if we assume $\nIphi$ from the LSST-era knowledge of asteroid
+  masses.   For MBAs fainter than $H\approx12.7,$ or
+  $\lesssim7$~km in diameter, the RMS uncertainty in position from
+  Yarkovsky forces exceeds the Brownian motion noise.   With current-day knowledge
+  of asteroid masses, the threshold for Yarkovsky dominance is a bit
+  fainter than $H=12.7.$  The optimist's view of this is that Brownian
+  motion will not interfere with attempts to measure the Yarkovsky
+  effect on individual km-scale or smaller MBAs.  The pessimists view is that uncertainty in
+ the  Yarkovsky effect will limit ephemeris accuracy before Brownian
+  motion will.  In either viewpoint, the steady $T^2$ accumulation of
+  $\Delta\phi$ displacements from the Yarkovsky effect is
+  distinguishable from the $T^{3/2}$ random walk of Brownian motion as
+  data quality and duration improve, so one separate these effects to
+  some extent when fitting an ephemeris---\citet{negin} quantify the
+  ability to distinguish the Yarkovsky effect from mutual encounters.}
 
 When Yarkovsky forces on MBAs are estimated using the $H$-dependent
 dispersion of $a$ for asteroid families, the effective ``observation''
 time period is typically several Myr.  Over these long time scales,
 \eqq{eq:yarkovsky} shows that the temporally coherent Yarkovsky effect
-can dominate over Brownian motion for bodies up to 10's or 100's of km
+can dominate over Brownian motion for bodies up to hundreds of km
 in diameter, which is why the technique is successful.
 
 \subsection{Summary}
@@ -942,7 +992,17 @@ contributed by the remaining millions of unmodelled MBAs would be just
 $\approx60$~m RMS in the azimuthal direction (about 30~$\mu$as), and a
 few $\mu$as or less in the other axes, small enough to ignore entirely
 for the accuracy of imaging astrometry for the foreseeable future.
-Occultation-based astrometry is much more accurate (but has fewer possible measurements per tracer), and would be significantly impacted by Brownian motion until $\gtrsim1000$ MBAs have mass estimates at modest $S/N$ level, although the precise impact will depend on whether the signals one is seeking are parallel or orthogonal to the kind of variations caused by Brownian motion.  For objects $\gtrsim100$~m in diameter, uncertainties from mutual encounters are larger than uncertainties from the Yarkovsky effect over decade timescales, at present levels of knowledge of asteroid masses.
+Occultation-based astrometry is much more accurate (but has fewer
+possible measurements per tracer), and would be significantly impacted
+by Brownian motion until $\gtrsim1000$ MBAs have mass estimates at
+modest $S/N$ level, although the precise impact will depend on whether
+the signals one is seeking are parallel or orthogonal to the kind of
+variations caused by Brownian motion.  \edited{For objects
+  $\lesssim7$~km in diameter, uncertainties from mutual encounters are
+  smaller than uncertainties from the Yarkovsky effect over decade
+  timescales, at near-future levels of knowledge of asteroid masses.
+  Yarkovsky forces must be included in dynamical models in order to
+  reach the precision levels where Brownian motion becomes a limitation.}
 
 
 \begin{acknowledgments}
