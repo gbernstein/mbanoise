@@ -1,0 +1,133 @@
+Response to first referee report.
+
+I thank the referee for their concise and insightful review of the paper.  The
+main issue raised is that this paper relies heavily on the companion paper
+analysing LSST constraints on asteroid masses from mutual encounters.  That
+paper was submitted to PSJ some weeks before this one, and has since been
+refereed, revised, accepted, and published in the journal, which I hope will
+assuage this worry.
+
+One of the revisions made to that paper addressed an issue also raised by this
+referee, which was the rather high value of albedo assumed for the main-belt
+asteroid population.  To address this concern for the other paper, we changed
+our conversion from (well-observed) H values to (physically relevant) mass
+substantially,  Instead of choosing a representative value of  both density and
+albedo of the population, we surveyed the literature for individual main-belt
+asteroids (MBAs) with mass determinations of any useful precision, then examined
+the ratio $M/ 10^{-0.6H}$ directly.  The number of such bodies is actually
+larger than the number for which both density and albedo have been determined
+to similar precision, so is a simpler and slightly more accurate means of deriving
+the "mass-to-light" conversion.  See Figure 1 and Section 2.1 of the published
+paper.
+
+The adopted result was that the distribution of mass-to-light
+ratios of this (incomplete, heterogeneous, almost certainly biased) population
+could be crudely characterized by taking a "high" and "low" value, which differ
+by a factor of 5.  The main change made to this Brownian-motion paper is to
+adopt these two values and recalculate the resulting integrals that yield the
+estimated RMS 10-year uncertainties that are the key result of this paper.
+These mass-to-light ratio changes appear as multiplicative scalings of the
+previous result.  The thresholds for individually-detectable impulses in Section
+3.2.3 have also been updated in concert with the updates to the
+mass-determination paper.
+
+Thus the numerical results presented in this paper have been adjusted, but as
+per the referee's comments, the methodology remains unchanged.  Changed text is
+in red in the draft, and figures that have changed have this noted in their
+captions.
+
+A few minor replies to the referee's comments are below.
+
+> This report evaluates the manuscript "Brownian Motion of Main-Belt
+> Asteroids on Human Timescales," which examines how gravitational
+> interactions between asteroids introduce stochastic positional
+> uncertainties over decadal timescales. The study provides a novel
+> approach to understanding perturbative effects in asteroid
+> ephemerides, with implications for high-precision astronomy.
+> 
+> The central hypothesis of the study is that the long-term orbital
+> evolution of main-belt asteroids is affected by random gravitational
+> impulses from other asteroids, leading to a Brownian motion-like
+> positional drift. This effect is expected to be particularly
+> significant over human timescales (10-100 years), impacting asteroid
+> tracking and planetary defense efforts. The study proposes that this
+> motion is primarily azimuthal and that current ephemeris models
+> underestimate this stochastic contribution.
+
+We did not intend to give the impression that Brownian motion is larger or more
+important on decadal scales than over millennia.  Rather our purpose is to
+quantify the effect of the Brownian motion on "real-time" dynamics of the solar
+system, i.e. the development of ephemerides that fit obervations and adjust
+parameters of the solar system's members and of the laws of gravitation.
+Understanding the long-term dynamical consequences of the Brownian motion for
+population evolution is beyond our scope.
+
+> 
+> The study is based on several key assumptions:
+> 
+> - Asteroid Encounters as Stochastic Events: The model assumes that
+> gravitational encounters between asteroids can be treated as a series
+> of independent random impulses.
+> 
+> - Negligibility of Non-Gravitational Effects: The study assumes that
+> radiation forces (e.g., Yarkovsky effect) and thermal recoil forces
+> have a minor influence compared to gravitational interactions for
+> asteroids larger than ~100 m.
+> 
+> - Mass Uncertainty from LSST Data: The study uses projected LSST data
+> to estimate mass uncertainties, heavily relying on Bernstein et
+> al. (2025) for these calculations.
+> 
+> - Choice of Geometric Albedo: The author chooses the geometric albedo
+> value that might, in this evaluator's judgment, be too "bright" to be
+> representative of the entire population of asteroids in the main
+> belt. The problem with that choice lies in the fact that, with that
+> value, the mass distribution estimate would be misrepresented. A value
+> of 0.15 might be more representative of the average, so I recommend
+> its use.
+>
+
+See the note at top for a major revision to our estimation of asteroid masses
+from their absolute magnitudes.
+
+> In terms of methodology, the study employs a combination of
+> theoretical modeling, statistical analysis, and observational
+> constraints:
+> 
+> -Impulse-Based Orbital Perturbation Model: The author developed a
+> model where asteroid encounters introduce small, random velocity
+> perturbations that accumulate over time, following a Brownian motion
+> framework.
+> 
+> -Empirical Scaling Relations: The study derives scaling relations for
+> the expected positional variance over time.
+> 
+> -Comparison with Gaia and LSST Predictions: The paper estimates how
+> well future astronomical surveys can track and mitigate these
+> stochastic uncertainties.  Both the mathematical approach and its
+> development are appropriate, and I have not detected any errors in
+> them.
+> 
+> Regarding the results, the manuscript highlights some points that
+> might be very interesting (the reasons for using "might" are explained
+> below):
+> 
+> - the RMS azimuthal shift due to Brownian motion reaches ~2 km over 10
+> years (~1 mas in angular uncertainty).
+> 
+> - Radial and vertical displacements are found to be significantly
+> smaller, with the azimuthal motion dominating the effect.
+> 
+> - LSST mass uncertainty reductions could improve orbit predictions but
+> do not eliminate Brownian motion noise.
+> 
+> Although the study presents an interesting and underexplored
+> perspective on stochastic effects affecting asteroid motion and has a
+> robust framework with an application of "Brownian motion" to celestial
+> mechanics, it is fully justified to rely on a paper that is in
+> preparation (Bernstein et al., 2025) and has clearly not gone through
+> the peer review process. This is the reason for using "might" in the
+> results section, making it difficult to analyze the final results. If
+> the author can improve on this point, the paper would be an
+> interesting contribution to the field.
+> 

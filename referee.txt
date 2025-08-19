@@ -1,0 +1,25 @@
+Report received 16 July 2025:
+
+Reviewer:
+This report evaluates the manuscript "Brownian Motion of Main-Belt Asteroids on Human Timescales," which examines how gravitational interactions between asteroids introduce stochastic positional uncertainties over decadal timescales. The study provides a novel approach to understanding perturbative effects in asteroid ephemerides, with implications for high-precision astronomy.
+
+The central hypothesis of the study is that the long-term orbital evolution of main-belt asteroids is affected by random gravitational impulses from other asteroids, leading to a Brownian motion-like positional drift. This effect is expected to be particularly significant over human timescales (10-100 years), impacting asteroid tracking and planetary defense efforts. The study proposes that this motion is primarily azimuthal and that current ephemeris models underestimate this stochastic contribution.
+
+The study is based on several key assumptions:
+- Asteroid Encounters as Stochastic Events: The model assumes that gravitational encounters between asteroids can be treated as a series of independent random impulses.
+- Negligibility of Non-Gravitational Effects: The study assumes that radiation forces (e.g., Yarkovsky effect) and thermal recoil forces have a minor influence compared to gravitational interactions for asteroids larger than ~100 m.
+- Mass Uncertainty from LSST Data: The study uses projected LSST data to estimate mass uncertainties, heavily relying on Bernstein et al. (2025) for these calculations.
+- Choice of Geometric Albedo: The author chooses the geometric albedo value that might, in this evaluator's judgment, be too "bright" to be representative of the entire population of asteroids in the main belt. The problem with that choice lies in the fact that, with that value, the mass distribution estimate would be misrepresented. A value of 0.15 might be more representative of the average, so I recommend its use.
+
+In terms of methodology, the study employs a combination of theoretical modeling, statistical analysis, and observational constraints:
+-Impulse-Based Orbital Perturbation Model: The author developed a model where asteroid encounters introduce small, random velocity perturbations that accumulate over time, following a Brownian motion framework.
+-Empirical Scaling Relations: The study derives scaling relations for the expected positional variance over time.
+-Comparison with Gaia and LSST Predictions: The paper estimates how well future astronomical surveys can track and mitigate these stochastic uncertainties.
+Both the mathematical approach and its development are appropriate, and I have not detected any errors in them.
+
+Regarding the results, the manuscript highlights some points that might be very interesting (the reasons for using "might" are explained below):
+- the RMS azimuthal shift due to Brownian motion reaches ~2 km over 10 years (~1 mas in angular uncertainty).
+- Radial and vertical displacements are found to be significantly smaller, with the azimuthal motion dominating the effect.
+- LSST mass uncertainty reductions could improve orbit predictions but do not eliminate Brownian motion noise.
+
+Although the study presents an interesting and underexplored perspective on stochastic effects affecting asteroid motion and has a robust framework with an application of "Brownian motion" to celestial mechanics, it is fully justified to rely on a paper that is in preparation (Bernstein et al., 2025) and has clearly not gone through the peer review process. This is the reason for using "might" in the results section, making it difficult to analyze the final results. If the author can improve on this point, the paper would be an interesting contribution to the field.
