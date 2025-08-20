@@ -11,7 +11,7 @@
 \newcommand{\eqq}[1]{Equation~(\ref{#1})}
 \newcommand{\ie}{\textit{i.e.\/}}
 \newcommand{\eg}{\textit{e.g.\/}}
-\newcommand\edited[1]{{\color{blue} {#1}}}
+\newcommand\edited[1]{{\color{red} {#1}}}
 \newcommand\gary[1]{{\color{red} {\textbf{GMB}: #1}}}
 % Turn off change highlighting
 %\newcommand\edited[1]{#1}
@@ -45,6 +45,7 @@
 \newcommand{\covm}{C}
 \newcommand{\lop}{\varpi}   % longitude of perihelion
 \newcommand{\ma}{\ell}  % Mean anomaly
+\newcommand{\uas}{$\mu$as}
 
 \newcommand{\Lhat}{\hat L}
 \usepackage{natbib} 
@@ -112,21 +113,27 @@ MBAs that cannot be predicted from the ephemeris of larger bodies, and therefore
 serves as noise on inferences from the MBAs.  The RMS
 azimuthal shift $\sigma_\phi$ of this ``Brownian noise''  is predicted
 using the distribution of known MBA orbits, combined with analytical propagation
-into future positional uncertainties. At current
-levels of asteroid-mass knowledge, $\sigma_\phi$ rises to
-$\approx2$~km or $\approx1$~mas over $T=10$~yr, increasing as
-$T^{3/2},$  large enough to degrade many inferences from
-Gaia and LSST MBA data. LSST data will, however, improve MBA
-mass knowledge enough to lower this Brownian uncertainty by
-$\ge4\times.$  Radial (vertical) Brownian noise  at $T=10$~yr is
-$\approx7\times$ ($\approx45\times$) 
-lower than the azimuthal noise.  For full exploitation of Gaia and
+into future positional uncertainties---radial and vertical perturbations are
+much smaller. At current
+levels of asteroid-mass knowledge, \edited{we estimate $\sigma_\phi$ accumulates
+to 2--9~km, or 1--5~mas over $T=10$~yr,  increasing as
+$T^{3/2}.$  This must be taken into consideration for proper inferences from Gaia astrometry.}
+LSST data will, however, improve MBA
+mass knowledge enough to lower this Brownian uncertainty \edited{to 260--400~m,
+  or 140--210~\uas, which in many but not all cases could be small enough to
+  ignore in inferences using Gaia or LSST astrometry of MBAs.}
+% Radial (vertical) Brownian noise  at $T=10$~yr is
+% $\approx7\times$ ($\approx45\times$) 
+% lower than the azimuthal noise.
+For full exploitation of Gaia and
 LSST MBA data, ephemeris models should include the
-$\approx1000$~largest asteroids as active bodies with free masses,
+\edited{$\approx10,000$ largest} asteroids as active bodies with free masses,
 even if not all are well constrained.  This will correctly propagate
-the uncertainties from these 1000 sources' deflections into desired
+the uncertainties \edited{in these bodies' gravity} into desired
 inferences. The RMS value of deflections from less-massive MBAs is
-then just $\sigma_\phi\approx60$~m or 30~$\mu$as, small enough to ignore until occultation-based position data become ubiquitously available for MBAs.
+then just \edited{$\sigma_\phi\approx17$--60~m, or 9--40~\uas, depending on the
+  mean mass of MBAs,} small enough to ignore until occultation-based position
+data become ubiquitously available for MBAs. 
 \end{abstract}
 
 \keywords{Main belt asteroids (2036), Asteroid dynamics (2210), Astrometry (80)}
@@ -141,7 +148,7 @@ black holes \citep[\eg][]{pbh}, determine
 the masses of known bodies \citep[\eg][]{goffin,baer}, test the laws
 of physics \citep[\eg][]{inpopgraviton}, and characterize 
 the non-gravitational forces that drive many forms of planetary
-migration, such as the maintainence of the near-Earth asteroid (NEA)
+migration, such as the maintenance of the near-Earth asteroid (NEA)
 population \citep[reviewed by][]{yarkovsky}.  While most applications of precision orbit determination
 have used the 8 major planets as test particles, there are now $>10^6$
 known minor planets available for this task.  These small bodies' astrometric
@@ -209,13 +216,13 @@ known far more accurately than the $M$ distribution.
 
 
 \section{Calculation overview}
-We aim to calculate the Brownian motion variance to an accuracy of a
+We aim to derive the Brownian motion variance to an accuracy of a
 factor $\approx 2.$
-Greater accuracy in the calculation is not warranted
-since some of the principal inputs have substantial uncertainty.  The
+Greater accuracy in the \edited{methodology is not warranted
+since some of the principal inputs have substantial uncertainty, \eg\ the}
 number of MBAs vs mass is 
 uncertain because of unknowns in the conversion
-from $H$ to mass; the status of future observations and $\sigma_M$ is
+from $H$ to mass, and the status of future observations and $\sigma_M$ is
 also unclear.  We are hence justified in retaining only the
 contributions to our results that are leading
 order in the orbital eccentricity $e$ of the tracer MBA.
@@ -227,7 +234,7 @@ integral over the mass distribution of the deflecting bodies.
 
 We adopt a cylindrical coordinate system $(r,\phi,z),$ with $\zhat$
 normal to the initial orbital plane, and $\phi=z=0$ toward the
-perhelion of the initial orbit, \ie\ both the initial ascending node
+perihelion of the initial orbit, \ie\ both the initial ascending node
 $\Omega_0$ and longitude of perihelion $\lop_0$ equal to zero.  The
 unit vectors $\rhat, \phat$ rotate with the target asteroid.  The mean
 anomaly at time $t=0$ is $\ma_0.$  In general, subscripts of $0$ will
@@ -326,7 +333,7 @@ unit vector of the impulse direction $\bhat$:
                                              \frac{dN}{dH} \frac{dn}{dv\,db\,d\theta\,d\phi}
                                               I^2_\gamma(H,v,b,\theta,\phi)
   \\
-  & = & \int dH \frac{dN}{dH} \int dv
+  & = & \int dH \frac{dN}{dH} \int dv\,\edited{d\theta\,d\phi}
         \frac{dn}{dA\,dv\,d\theta\,d\phi} \hat b_\gamma^2(\theta,\phi)
         \int_{b_{\rm min}}^{b_{\rm max}} 2\pi b\,db\,
         \left(\frac{2\sigma_M(H)}{bv}\right)^2 \\
@@ -354,9 +361,11 @@ to the entirety of the masses of MBAs omitted from the ephemeris
 (second row).
 
 
-In the third line, we execute the integral over $b$ and introduce the
-average geometry factors $\langle \hat b^2_\gamma\rangle$ of encounters as
-a function of $v$.  It must be true that
+In the third line, we execute the integral over $b,$ and \edited{condense the integrals
+over the impulse direction $(\theta,\phi)$ into the angle-averaged
+geometry factors $\langle \hat b^2_\gamma\rangle$ of encounters as
+a function of $v$.  These will be derived from the actual MBA orbit
+distributions.} It must be true that
 \begin{equation}
   \left\langle \hat b_r^2 \right\rangle
   + \left\langle \hat b_\phi^2 \right\rangle
@@ -406,7 +415,7 @@ their values.
 
 \subsection{Numerical results}
 \eqq{eq:nI2} reduces the calculation to a double integral over the
-deflector $H$ and the tracer-deflector relative velocity $v.$  The
+deflector's $H$ and the tracer-deflector relative velocity $v.$  The
 constituents of this calculation are estimated as follows.
 
 \subsubsection{Encounter rates and geometries}
@@ -486,13 +495,20 @@ so we do not need any special treatment to sum the integrals in
 
 \subsubsection{Asteroid properties}
 \label{sec:mbaprops}
-We crudely approximate the population as having a geometric albedo of 0.25,
-density of 2500~kg~m$^{-3},$ and spherical shapes, which leads to the
-conversion
+We \edited{begin with} the $H$ distribution of potential deflectors,
+\edited{since this is directly observable.}.
+Figure~\ref{fig:counts} plots our assumptions for $dN/dH.$  The MPC
+catalog is likely close to complete in all three regions for $H\le17,$
+so we will use the MPC counts directly in this regime.  Note that the
+three regions have similar shapes of $dN/dH.$  For $H>17,$ we adopt
+the functional form for the cumulative MBA counts given by
+initial LSST predictions \citep{lsstbook}:
 \begin{equation}
-  M(H) = 1.2\times10^{-17} M_\odot \times 10^{-0.6(H-15)}
+  N(<H) \propto \frac{10^{0.43(H-15.7)}}{10^{0.18(H-15.7)} +
+    10^{-0.18(H-15.7)}},
+\label{eq:lsstmba}
 \end{equation}
-
+normalizing this curve to the observed $H<17$ counts for each region.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{mbacounts.pdf}
@@ -506,19 +522,31 @@ conversion
     visual comparison of the curves' shapes in the three MBA regions.}
   \label{fig:counts}
 \end{figure}
-We also require the $H$ distribution of potential deflectors.
-Figure~\ref{fig:counts} plots our assumptions for $dN/dH.$  The MPC
-catalog is likely close to complete in all three regions for $H\le17,$
-so we will use the MPC counts directly in this regime.  Note that the
-three regions have similar shapes of $dN/dH.$  For $H>17,$ we adopt
-the functional form for the cumulative MBA counts given by
-initial LSST predictions \citep{lsstbook}:
-\begin{equation}
-  N(<H) \propto \frac{10^{0.43(H-15.7)}}{10^{0.18(H-15.7)} +
-    10^{-0.18(H-15.7)}},
-\label{eq:lsstmba}
-\end{equation}
-normalizing this curve to the observed $H<17$ counts for each region.
+
+\edited{Next we require a mean mass of MBAs with a given $H,$ ignoring the fact
+  that there will be a substantial spread of $M$ vs $H$.  While one can
+  calculate a mass under assumptions of a Lambertian spherical body, a known
+  geometric albedo, and a known mean density, each of these assumptions would be
+  inaccurate and based on a limited set of well-measured MBAs.  It is more
+  effective to examine $M(H)$ directly from the slightly-less-limited set of
+  MBAs with usefully constrained masses.  If albedo, density, and shape vary
+  weakly with $H$, we will expect a relation of the form
+  \begin{equation}
+        M(H) = M_{10} 10^{-0.6(H-10)}.
+        \label{m10}
+      \end{equation}
+The distribution of $M_{10}$ values for MBAs with masses found in the literature
+is presented in Figure~1 and Section~2.1 of \citet{negin}.  We adopt their
+selection of a ``high-mass-to-light'' value of
+$M_{10}=2\times10^{17}\,\text{kg}=10^{-13} M_\odot$ and a ``low-$M/L$'' value of
+$M_{10}=4\times10^{16}\,\text{kg}=2\times10^{-14} M_\odot$ as providing a rough
+estimate of the range that the true mean $M_{10}$ might take.}
+%       We crudely approximate the population as having a geometric albedo of 0.25,
+% density of 2500~kg~m$^{-3},$ and spherical shapes, which leads to the
+% conversion
+% \begin{equation}
+%   M(H) = 1.2\times10^{-17} M_\odot \times 10^{-0.6(H-15)}
+% \end{equation}
 
 Our integral for the uncertainty due to unmodelled MBA gravitation
 requires the RMS error $\sigma_M(H)$ between the true mass $M$ and the
@@ -539,17 +567,8 @@ few MBAs on which it imparts the largest impulses.  The accuracy
 $\sigma_M$ of this determination will vary, depending upon the
 geometry  and timing of
 each deflector MBA's encounters, and the measurement errors on its tracers.  These
-factors are independent of the mass of the deflector.  We will
-assign a value $\sigma_M$ to the RMS uncertainty in MBA mass
-attainable from following a few individual tracers, and calculate
-the Brownian-motion noise as a function of $\sigma_M.$
+factors are independent of the mass of the deflector.
 
-
-\begin{figure}
-  \plottwo{sigmaI.pdf}{sigmaM.pdf}
-  \caption{Forecasts of uncertainties derived from LSST tracking of the known MBAs.  The left-hand plot shows the distribution of (log) uncertainties $\sigma_I$ on the amplitude of the impulse applied to the tracer MBA, incorporating forecasted LSST observations and marginalizing over the tracer's initial state vector.  The right-hand side shows the distribution of the uncertainties on the mass, $\sigma_M=(bv/2)\sigma_I,$ for deflector MBAs expected from LSST.  The histograms show the results from using only the single tracer yielding the lowest $\sigma_M$ for that deflector; combining the 10 best-$\sigma_M$ tracers; or combining all impulses at $b<0.03$~AU.  The RMS value of $\sigma_M$ over the deflector population is given in the legend.  Masses are in solar units, and velocities in units of the circular velocity of the deflector.}
-  \label{fig:sigmaI}
-\end{figure}
 
 To give some context, a
 comprehensive investigation of MBA masses from mutual scattering
@@ -559,42 +578,69 @@ better-measured events). But we can expect substantial improvement
 in the LSST era when a millions of potential tracer asteroids attain
 mas-level astrometry. \citet{negin} use a simulated LSST sequence of
 observations to estimate the impulse (and mass) uncertainties from
-analyzing LSST's data on mutual encounters of the known asteroids. The
-tracer MBAs for those events are essentially an unbiased selection
-from the known MBAs, and the left-hand plot of Figure~\ref{fig:sigmaI}
-shows the distribution of the uncertainty $\sigma_I$ derived from each
-tracer's LSST data after marginalizing over its initial state vector.
-This histogram marginalizes over the apparent magnitude and observing
-conditions of the tracer, the date of the encounter, and the direction
-$\bhat$ of the impulse.  The right-hand plot of
-Figure~\ref{fig:sigmaI} forecasts the distribution of $\sigma_M$ that
-we can expect for deflectors.  This forecast is made as follows: we
-treat each of the 5000 tracer MBAs that we have selected from each
-region as deflectors, since we have a list of all of their encounters
-with known MBAs with $b<0.03$~AU.  For each such encounter, we select
-at random one $\sigma_I$ from the distribution for LSST data on known
-MBAs forecasted by \citet{negin} (Figure~\ref{fig:sigmaI}, left), and
-calculate $\sigma_M=(bv/2)\sigma_I.$  For each deflector, we then
-calculate (a) the individual encounter with lowest $\sigma_M$; (b) the
-combined constraint $\left(\sum \sigma_{M,i}^2\right)^{-1/2}$ from the
-10 lowest $\sigma_M$ encounters for that deflector; and (c) the
-combined constraint for all $b<0.03$~AU encounters (typically
-$\sim1000$ of them).  The right-hand plot of Figure~\ref{fig:sigmaI}
-gives the histograms of these three measures of $\sigma_M.$  We see
-that most of the available information on any given deflector's mass
-comes from its 10 most-informative encounters.  It should not be a
-computational barrier to solve for the masses of $O(10^4)$ MBAs by including the deflections they impart on $O(10^5)$ other MBAs in an ephemeris fit.
-The RMS $\sigma_M$ using LSST data from the 10 most-informative tracer encounters with a given deflector is estimated as $\sigma_M=2.6\times10^{-14}M_\odot.$ There are $\approx450$ MBAs with mass above this forecasted RMS $\sigma_M.$  This is a conservative estimate in that we ignore any observational information before LSST, and we also do not consider the information increase that will come from tracking the $\approx10$-fold increase in number of known MBAs that LSST will enable.  
+analyzing LSST's data on mutual encounters of the known asteroids.
+\edited{ They find
+that the median $\sigma_M$ for MBAs depends substantially on the quality of
+pre-LSST astrometry of tracer bodies, varying from $10^{-13.5} M_\odot$ if no
+pre-LSST data are used, to $10^{-14.1} M_\odot$ if pre-LSST data fully determine
+the tracer state vector at the start of LSST (see their Figure~4 and Section~5).  These values assume that the 20
+most informative tracers of a given target asteroid are combined to find the
+best estimate of the deflector mass.  We will adopt a value of
+$\sigma_M=10^{-14} M_\odot$  as the nominal situation post-LSST. This is on the
+optimistic side of the value of pre-LSST data, but also ignores information that
+might be gained from mutual encounters with the $>10^7$ new MBAs that LSST is
+expected to discover and have available as tracer particles.}
+
+
+% We will
+% assign a value $\sigma_M$ to the RMS uncertainty in MBA mass
+% attainable from following a few individual tracers, and calculate
+% the Brownian-motion noise as a function of $\sigma_M.$
+
+
+% \begin{figure}
+%   \plottwo{sigmaI.pdf}{sigmaM.pdf}
+%   \caption{Forecasts of uncertainties derived from LSST tracking of the known MBAs.  The left-hand plot shows the distribution of (log) uncertainties $\sigma_I$ on the amplitude of the impulse applied to the tracer MBA, incorporating forecasted LSST observations and marginalizing over the tracer's initial state vector.  The right-hand side shows the distribution of the uncertainties on the mass, $\sigma_M=(bv/2)\sigma_I,$ for deflector MBAs expected from LSST.  The histograms show the results from using only the single tracer yielding the lowest $\sigma_M$ for that deflector; combining the 10 best-$\sigma_M$ tracers; or combining all impulses at $b<0.03$~AU.  The RMS value of $\sigma_M$ over the deflector population is given in the legend.  Masses are in solar units, and velocities in units of the circular velocity of the deflector.}
+%   \label{fig:sigmaI}
+% \end{figure}
+
+% The
+% tracer MBAs for those events are essentially an unbiased selection
+% from the known MBAs, and the left-hand plot of Figure~\ref{fig:sigmaI}
+% shows the distribution of the uncertainty $\sigma_I$ derived from each
+% tracer's LSST data after marginalizing over its initial state vector.
+% This histogram marginalizes over the apparent magnitude and observing
+% conditions of the tracer, the date of the encounter, and the direction
+% $\bhat$ of the impulse.  The right-hand plot of
+% Figure~\ref{fig:sigmaI} forecasts the distribution of $\sigma_M$ that
+% we can expect for deflectors.  This forecast is made as follows: we
+% treat each of the 5000 tracer MBAs that we have selected from each
+% region as deflectors, since we have a list of all of their encounters
+% with known MBAs with $b<0.03$~AU.  For each such encounter, we select
+% at random one $\sigma_I$ from the distribution for LSST data on known
+% MBAs forecasted by \citet{negin} (Figure~\ref{fig:sigmaI}, left), and
+% calculate $\sigma_M=(bv/2)\sigma_I.$  For each deflector, we then
+% calculate (a) the individual encounter with lowest $\sigma_M$; (b) the
+% combined constraint $\left(\sum \sigma_{M,i}^2\right)^{-1/2}$ from the
+% 10 lowest $\sigma_M$ encounters for that deflector; and (c) the
+% combined constraint for all $b<0.03$~AU encounters (typically
+% $\sim1000$ of them).  The right-hand plot of Figure~\ref{fig:sigmaI}
+% gives the histograms of these three measures of $\sigma_M.$  We see
+% that most of the available information on any given deflector's mass
+% comes from its 10 most-informative encounters.  It should not be a
+% computational barrier to solve for the masses of $O(10^4)$ MBAs by including the deflections they impart on $O(10^5)$ other MBAs in an ephemeris fit.
+% The RMS $\sigma_M$ using LSST data from the 10 most-informative tracer encounters with a given deflector is estimated as $\sigma_M=2.6\times10^{-14}M_\odot.$ There are $\approx450$ MBAs with mass above this forecasted RMS $\sigma_M.$  This is a conservative estimate in that we ignore any observational information before LSST, and we also do not consider the information increase that will come from tracking the $\approx10$-fold increase in number of known MBAs that LSST will enable.  
 
 
 
 \subsubsection{Individually detectable impulses}
 Examining the $\sigma_I$ distribution forecasted for LSST data on
-tracers by \citet{negin}, we find that for impulses occurring near the midpoint of the survey, $\approx80\%$ of all cases yield $\sigma_I<10^{-4}\,{\rm m}\,{\rm
-  s}^{-1},$ some an order of magnitude lower.  We conservatively
+tracers by \citet{negin} \edited{(their Figure 3)}, we find that for impulses occurring near the midpoint of the survey, $\approx80\%$ of all cases yield $\sigma_I<10^{-4}\,{\rm m}\,{\rm
+  s}^{-1},$ some an order of magnitude lower, \edited{even when pre-LSST information on
+the tracer MBA is uninformative.}  We conservatively
 assume that any encounter producing  an impulse $>5\times$ this value, $I_{\rm det}=5\times 10^{-4}\,{\rm m}\,{\rm
   s}^{-1},$ can be used to directly constrain the relevant deflector and include it in the ephemeris model.
-When normalized by $v_c,$ we have $I_{\rm  det}=10^{-8}$ at 10\% accuracy across the main belt.
+When normalized by $v_c,$ we have \edited{$I_{\rm  det}<3\times10^{-8}$ across the main belt.}
 
 \section{Propagation to position shifts}
 \label{sec:propagation}
@@ -759,34 +805,43 @@ Equations~(\ref{eq:varr}), (\ref{eq:varphi}), and (\ref{eq:vartheta}) comprise o
   \item For Earth-based observers, the deviations in $(r,\theta,\phi)$ from the nominal orbit will be some calculable, time-dependent, nearly-orthonormal matrix transformation of the heliocentric deviations derived above, so the results will not be grossly different aside from bringing the three directional components closer together in amplitude.
 \end{itemize}
 
-\section{Results and conclusions}
+\section{Results}
 \label{sec:results}
 We can now propagate the numerical estimates for $\left\langle nI_\gamma^2\right\rangle$ from Section~\ref{sec:impulse} through the analytical observational consequences in Section~\ref{sec:observe} to yield estimates of the unmodelled RMS shifts of MBAs from each region.  We assume the following parameters:
 \begin{itemize}
 \item The deviations are accumulated over a time $T=10$~yr.
 \item The population has $\langle e^2 \rangle=0.03,$ which is the value for the cataloged MBAs of the Inner and Middle belts, and a slight overestimate for the Outer belt.
-\item The $5\sigma$ impulse size $I_{\rm det}$, at which we deem it possible to isolate the effect of a single deflector on a tracer and hence usefully include that deflector's mass in the ephemeris model, is taken to be $I_{\rm det} = 10^{-8}v_c.$ In practice this will depend on the geometry of the impulse and on the quality of the tracer's observations.  But we find that changing $I_{\rm det}$ by a factor of 10 alters the noise from unmodeled impulses by $<20\%.$
-  \item We will vary $\sigma_M,$ the RMS uncertainty on the mass of modelled asteroids, such that the number $N$ of MBAs  with $M>\sigma_M$ varies from 100 to 10,000.  The number of MBAs included in the ephemeris model would be $\approx N.$ 
+\item The $5\sigma$ impulse size $I_{\rm det}$, at which we deem it possible to isolate the effect of a single deflector on a tracer and hence usefully include that deflector's mass in the ephemeris model, is taken to be $I_{\rm det} = 3\times10^{-8}v_c.$ In practice this will depend on the geometry of the impulse and on the quality of the tracer's observations.  But we find that changing $I_{\rm det}$ by a factor of 10 alters the noise from unmodelled impulses by $<20\%.$
+\item We will vary $\sigma_M,$ the RMS uncertainty on the mass of modelled asteroids, such that the number $N$ of MBAs  with $M>\sigma_M$ varies from 200 to 10,000.  The number of MBAs included in the ephemeris model would be $\approx N.$  \edited{We also examine the forecasted LSST results at $\sigma_M=10^{-14}M_\odot.$}
+  \item \edited{We consider the two cases of high or low mean $M/L$ ratio for
+      MBAs, which differ by a factor of 5 in asteroid mass at fixed $H.$ This
+      yields nearly a factor 5 difference in the RMS Brownian motion at a given $N.$}
 \end{itemize}
 
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{result.pdf}
-  \caption{Each line shows the forecast of the standard deviation of the
-    azimuthal position of a Middle Main Belt asteroid caused by discrete
-    encounters over 10~years with absolute magnitude $H$ greater than the value on
-    the (lower) $x$ axis, \ie\ the cumulative noise from all MBAs
-    fainter (smaller) than the plotted $H_{\rm min.}$  The upper axis gives the $M_{\rm max}$ equivalent to $H_{\rm min}.$
-.  The left axis gives RMS values in meters, the right
-    the apparent shift in milliarseconds for a heliocentric observer.
+  % \includegraphics[width=0.6\textwidth]{result.pdf}
+  \includegraphics[width=0.48\textwidth]{result_loML.pdf}
+  \includegraphics[width=0.48\textwidth]{result_hiML.pdf}
+  \caption{Each curve shows the forecast of the standard deviation of the
+    azimuthal position of a Middle Main Belt asteroid \edited{caused by discrete
+    encounters, over 10~years, with other MBAs that are smaller/fainter than the
+    $H_{\rm min}$ value on the (lower) $x$ axis.  The upper axis gives the $M_{\rm max}=M(H_{\rm min}).$}
+The left axis gives RMS values in meters, the right
+the apparent shift in milliarseconds for a heliocentric observer.
+\edited{The left and right panels differ in their assumptions about the scaling between $H$ value and mass for MBAs, as noted within each frame.}
     Each line is for a different assumption about the RMS uncertainty $\sigma_M$ in the masses of individual asteroids gained from high-$S/N$ observations of mutual encounters.
-Each star marks the dividing point between the $N$ MBAs with $M>\sigma_M,$ and the smaller bodies with no useful measure of their mass ($M<\sigma_M$). The light dotted lines mark the level of azimuthal noise expected from the bodies beyond the most massive $N,$ \ie\ the RMS that an ephemeris model including $N$ bodies would not properly model. 
-    The black dashed curve is a conservative estimate of what can be achieved using LSST data to constrain larger MBA's masses. Radial and vertical RMS positions are factors of $\approx 7$ and 45 lower than the azimuthal noise, respectively.}
+Each star marks the dividing point between the $N$ MBAs with $M>\sigma_M,$ and
+the smaller bodies with no useful measure of their mass ($M<\sigma_M$). The
+light dotted lines mark the level of azimuthal noise from deflections only by
+the bodies with $M<\sigma_M.$ 
+The black dashed curve is a conservative estimate of what can be achieved using LSST data to constrain MBA's masses. Radial and vertical RMS positions are factors of $\approx 7$ and 45 lower than the azimuthal noise, respectively. \edited{This figure has been split into two panels for two different assumptions about mean MBA mass.}}
   \label{fig:result}
 \end{figure}
 
-Figure~\ref{fig:result} plots the resulting noise level $\sigma_\phi=\sqrt{\Var(\phi)}$ of the calculation for the Middle regions of MBAs, showing both the linear RMS displacements on the left axis and the angular displacements on the right axis.  Each point on the curve is the $\sigma_\phi$ attributable to deflector MBAs that are smaller (fainter) than the $H$ value on the lower axis, or the mass on the top axis.  Thus the left-most point on each curve marks the total noise integrated over the full population of deflectors. Different color lines show the results for the values of $N$ and $\sigma_M$ as marked astride each line.  Notable features of these result are:
+Figures~\ref{fig:result} plot the resulting noise level $\sigma_\phi=\sqrt{\Var(\phi)}$ of the calculation for the Middle regions of MBAs, showing both the linear RMS displacements on the left axis and the angular displacements on the right axis.  Each point on the curve is the $\sigma_\phi$ attributable to deflector MBAs that are smaller (fainter) than the $H$ value on the lower axis, or the mass on the top axis.  Thus the left-most point on each curve marks the total noise integrated over the full population of deflectors. Different color lines show the results for the values of $N$ and $\sigma_M$ as marked astride each line.  \edited{The left-hand plot assumes the lower value of $M_{10},$ the right-hand panel the higher value---note the shift of the upper axis scale.}  
+Notable features of these result are:
 \begin{itemize}
 \item \emph{The linear displacements are nearly identical for Inner,
     Middle, and Outer regions of the asteroid belt.}  The angular
@@ -808,21 +863,53 @@ curve, which will also correspond to the MBAs with masses $M\sim
 the deflectors become scarce at larger $M.$ Below this mass, $dN/dH$
 is rising to fainter/smaller bodies, but the factor $M^2(H) dN/dH$
 that determines the Brownian motion is dropping.
+\item \edited{The $5\times$ larger mass at fixed $H$ translates fairly directly
+    into a $5\times$ higher RMS Brownian motion at the same $H$ cutoff.  The
+    higher $M_{10}$ also means, however, that $\approx2\times$ more (and
+    fainter) asteroids will attain useful constraints on their masses from LSST
+    observations of mutual interactions.  This ameliorates the increase in
+    unmodelled Brownian motion from the higher $M/L.$}
 \end{itemize}
 
-We take as representative of the present state of the art the case
-where the $N=100$ most massive MBAs (aside from Ceres and Vesta) have
-masses determined to $\sigma_M\approx 10^{-12.7} M_\odot$ by mutual
-encounters.  Our calculations suggest then that a 10-year ephemeris
-including these 100 MBAs will accrue RMS errors of $\approx 2$~km in
-the azimuthal position, or 1~mas in ecliptic longitude.
-RMS range and vertical ephemeris errors would be closer to 300 and 40~m, respectively.  We find that, roughly speaking, $\sigma_\phi$
-drops with the number of modeled MBAs as $1/N.$
+We take as roughly representative of the present state of the art the case
+where the \edited{$N=200$} brightest and most massive MBAs (aside from Ceres and Vesta) have
+masses determined \edited{to $>1\sigma$ accuracy}
+% .  to $\sigma_M\approx 10^{-12.7} M_\odot$
+by mutual encounters.  Our calculations then suggest that a 10-year ephemeris
+including these 200 MBAs will accrue RMS errors in the range \edited{2--8.5~km in
+the azimuthal position, or 1.0--4.4~mas in ecliptic longitude.  This wide range arises from uncertainty in what the actual masses of the MBAs are.  These results are given as the ``Total RMS'' in the column of Table~\ref{tab:rms} labelled ``Current.''}
+% RMS range and vertical ephemeris errors would be closer to 300 and 40~m, respectively.
 
- In the next decade, LSST will significantly
-increase the number $N$ of deflector MBAs with
-usefully measured masses from mutual encounters by tracking hugely
-more potential tracers and lowering $\sigma_M.$  The conservative estimate given in Section~\ref{sec:mbaprops} is that LSST will lower $\sigma_M$ to $\approx10^{-13.7},$ which our calculations indicate lowers the $\sigma_\phi$ values to $\approx500$~m or 0.25~mas.
+\begin{deluxetable}{lcccc}
+  \tablewidth{0pt}
+\tablecaption{Forecasted RMS Brownian motion}
+\tablehead{\colhead{} & \colhead{Current} & \colhead{LSST} &   \colhead{Future 1} & \colhead{Future 2}}
+\startdata
+$\sigma_M/M_\odot$ & $10^{-12.8}$--$10^{-12.1}$ & $10^{-14.0}$
+& $10^{-15.1}$--$10^{-14.4}$ 
+& $10^{-15.8}$--$10^{-15.1}$ \\
+Number $M>\sigma_M$ & 200 & 850--1700 & 3000 & 10,000 \\
+Total RMS & 2.0--8.5~km & 260--400~m & 50--240~m & 23--110~m \\
+& 1.0--4.4~mas & 140--210~\uas & 26--120~\uas & 12--60~\uas \\[5pt]
+$M<\sigma_M$ only & 1.2--5~km & 130--270~m & 35--170~m & 17--80~m \\
+& 0.6--2.8~mas & 70--140~\uas & 20--90~\uas & 9--40~\uas
+\enddata
+\label{tab:rms}
+\tablecomments{\edited{This table is new.} Each column gives the forecasted RMS positional uncertainty after 10~years from caused by deflections by asteroids of unknown and uncertain mass.  Each column assumes either a total number $N$ of MBAs with mass $M$ above the mean MBA mass uncertainty $\sigma_M$, or in the case of LSST forecasts, assumes a value of $\sigma_M.$ The range is due to uncertainty in the mean mass of MBAs at a fixed $H$ value.  The ``Total'' rows are the RMS of this Brownian motion caused by the $N$ bodies with mass known to accuracy $\sigma_M$, plus the remainder of the MBA population at $M<\sigma_M$.  The bottom two rows include only the latter population's effects.}
+\end{deluxetable}
+%
+\edited{ The next curve in Figures~\ref{fig:result} and column in Table~\ref{tab:rms} adopt our estimate that 10-year LSST astrometry will reduce $\sigma_M$ to $\approx10^{-14}M_\odot,$ putting 800--1700 MBAs at $M>\sigma_M,$ depending on the $M/L$ ratio. [LSST should also greatly reduce the factor-5 uncertainty that we have assigned to $M/L$!]  The total RMS Brownian motion from ignorance of MBA masses is reduced substantially, to 260--400~m or 140--210~\uas.}
+
+\edited{We also examine scenarios where 3000 or 10,000 MBAs have $>1\sigma$ mass
+  measurements available.  The plots show that as the number of bodies $N$ with
+  $M>\sigma_M$ increases, RMS Brownian motion $\sigma_\phi$ drops as $\approx1/N.$}
+  
+% In the next decade, LSST will significantly
+% increase the number $N$ of deflector MBAs with
+% usefully measured masses from mutual encounters by tracking hugely
+% more potential tracers and lowering $\sigma_M$  \edited{toward $10^{-14}M_\odot,$}
+% % The conservative estimate given in Section~\ref{sec:mbaprops} is that LSST will lower $\sigma_M$ to $\approx10^{-13.7},$
+% which our calculations indicate lowers the $\sigma_\phi$ values to $\approx500$~m or 0.25~mas.
 
 We need to check whether our supposition that impulses $I>I_{\rm det}$
 would stand out above the measurement noise of a single tracer remains
@@ -835,7 +922,7 @@ size as per \eqq{eq:phi}.  Consider a survey of duration $T,$ and a
 single impulse $I_{\rm det}$ applied at time $T/2.$ If
 $I_\phi=10^{-8}/\sqrt{2}$ and $T=10$~yr, then
 $\Delta\phi\approx35$~mas.  This is much larger than the
-stochastic $\sigma_\phi\approx1$~mas expected from unmodelled masses at the
+stochastic \edited{$\sigma_\phi < 5$~mas} expected from unmodelled masses at the
 current state of knowledge.  For primarily radial or vertical
 impulses, the astrometric signal will be smaller, but the Brownian
 motion noise is lower too. 
@@ -847,14 +934,25 @@ tracer asteroids---impulses of this size will remain strongly detected.
 \label{sec:discuss}
 \subsection{Implications for future inferences}
   
-An important question is: will the positional noise due to unmodelled
+\edited{The main question we wish to answer is:} will the positional noise due to unmodelled
 MBA encounters degrade inferences being made with measurements of
 tracer MBAs?  If the Brownian noise is well below other sources of measurement noise, then the answer must be ``no.''
-The per-epoch uncertainties on solar-system object astrometry from Gaia\footnote{We take one Gaia transit as an ``epoch'' here.} are reported to be as low as 0.3~mas for very bright sources ($G=13$), rising to $\approx10$~mas at its $G=21$ limit where most detections lie \citep[][Figure 6]{gaiass3}.  The overall RMS residual to the orbit fits are 5~mas (this is in the ``along-track'' direction).  Thus the Brownian motion of $\approx1$~mas we estimate for $\phi$ (over a 10-year period) with current asteroid-mass knowledge would be important for the single-epoch error budget of the brighter Gaia MBAs.  With our forecasted LSST-era knowledge of asteroid masses ($\sigma_M\approx10^{-13.6},$ RMS azimuthal errors $\approx0.25$~mas), the situation will be improved in that only the brightest few MBAs will have per-epoch Brownian motion noise comparable to the per-epoch measurement noise.
+The per-epoch uncertainties on solar-system object astrometry from
+Gaia\footnote{We take one Gaia transit as an ``epoch'' here.} are reported to be
+as low as 0.3~mas for very bright sources ($G=13$), rising to $\approx10$~mas at
+its $G=21$ limit where most detections lie \citep[][Figure 6]{gaiass3}.  The
+overall RMS residual to the orbit fits are 5~mas (this is in the ``along-track''
+direction).  Thus the Brownian motion of \edited{1--5~mas we estimate for $\phi$
+  (over a 10-year period) with current asteroid-mass knowledge would be
+  important for the single-epoch error budget of many MBAs.}  With the
+forecasted LSST-era knowledge of asteroid masses, \edited{RMS azimuthal shifts
+  from MBA mass ignorance are reduced to $\lesssim 200$~\uas, such that only the
+  brightest few MBAs will have per-epoch Brownian motion noise comparable to the
+  per-epoch Gaia measurement noise.}
 
 For LSST, the measurement errors on MBA positions will have a floor of 1--2~mas per epoch set by refraction from atmospheric turbulence \citep{willow,trojans}.  Objects with apparent magnitude $m\gtrsim20$ will have larger per-epoch errors due to photon noise in the images.  Assuming that LSST inferences will be able to exploit LSST's own determinations of MBA masses, we see that on a per-epoch basis, the Brownian noise will always be subdominant to measurement errors.
 
-An ambitious proposal by \citet{occultations} is to track $\approx10^6$ MBAs down to diameters of $\approx1$~km by watching them occult Gaia stars.  The timing of each occultation can locate the center of mass of the target MBA along its direction of motion, with most of the information available from objects yielding uncertainties of 50--100~m on this position.  The Brownian noise (with LSST-level asteroid knowledge) over a 10-year baseline will in this case be comparable to the per-epoch measurement errors for most observations.  Reducing the typical mass uncertainty of individual asteroids to $\sigma_M\approx 10^{-15.4} M_\odot$ would be needed ($N=3000$) to reduce the Brownian noise to negligible levels for this survey.
+An ambitious proposal by \citet{occultations} is to track $\approx10^6$ MBAs down to diameters of $\approx1$~km by watching them occult Gaia stars.  The timing of each occultation can locate the center of mass of the target MBA along its direction of motion, with most of the information available from objects yielding uncertainties of 50--100~m on this position.  The Brownian noise over a 10-year baseline, with LSST-level asteroid knowledge, will \edited{exceed the per-epoch measurement errors from occultations.  Reducing the Brownian noise to be below or comparable to the occultation measurement errors will require some combination of reaching $1\sigma$ mass measurement for 3000-10,000 MBAs, and having the asteroids' $M(H)$ relation be near the lighter end of our nominal range.}
 
 \emph{These per-epoch comparisons are, however, misleading.} The
 Brownian noise is highly correlated between different epochs of
@@ -867,16 +965,25 @@ of the Brownian covariance matrix with the largest uncertainties look similar to
 
 Consider first the worst-case scenario, where the Brownian noise does
 not average down at all across observations, but measurement errors
-drop by a factor $\sqrt{M}.$   \citet{gaiafpr} report typically $\sim60$ epochs per asteroid in 66 months, suggesting $O(100)$ epochs per asteroid in the full 11-year observing period.  At Gaia's faint end, this means that Brownian noise with present asteroid knowledge would have comparable impact to the measurement errors, and dominate inferences at the bright end.  LSST will obtain several hundred epochs per asteroid.  With an effective factor 10--20 reduction in the total measurement noise, and assuming $\sigma_\phi\approx0.25$~mas Brownian noise, the latter would become important for the brighter tracer MBAs in LSST data, but inferences with the millions of fainter objects discovered by LSST would still be limited by photon noise.  The occultation program proposed by \citet{occultations} would obtain $<10$ measurements per decade for most MBAs and hence see less degradation of Brownian relative to measurement noise.
+drop by a factor $\sqrt{M}.$   \citet{gaiafpr} report typically $\sim60$ epochs per asteroid in 66 months, suggesting $O(100)$ epochs per asteroid in the full 11-year observing period. \edited{In this case, we should be comparing the Brownian noise to $1/\sqrt{100}$ of Gaia's per-epoch uncertainties.  This would mean that Brownian noise, at current asteroid mass knowledge, will dominate the error budget for measurements of most Gaia stars' properties, and with LSST-level asteroid mass knowledge, will still be a significant source of error for the brighter end of Gaia's catalog.}
+
+LSST will obtain several hundred epochs per asteroid, \edited{so in this
+  worst-case scenario of the Brownian noise correlations paralleling some
+  dynamical signal of interest, the Brownian noise is significant if
+  $\sigma_\phi \gtrsim (2\,\text{mas}/\sqrt{400}=100$~\uas.  We have seen that the Brownian noise with LSST-level knowledge of MBA masses is comparable to this value, and therefore would be significant.  The ``Future'' scenarios of mass knowledge could reduce Brownian noise to insignificance for all LSST inferences, especially if the true MBA $M/L$ is near our low estimates.}
+The occultation program proposed by \citet{occultations} would only obtain
+$\lesssim10$ measurements per decade for most MBAs, but its extremely small
+measurement errors \edited{mean it will remain important to incorporate the Brownian
+noise into inferences.}
 
 At the other extreme are cases where the dominant modes of Brownian noise are orthogonal to the effects of parameters of interest.  
-If, for example, one is searching for the tidal force of a Planet X, this will be manifested primarily as a collective apsidal precession and a quadrupolar deviation of the orbit from its ellipse that does not evolve with time.  These are quite distinct from the random walk in $\Delta\tau$ that is the dominant effect of Brownian motion, and therefore Brownian noise will cause less degradation to the Planet X inference than the per-epoch $\sigma_\phi$ would suggest.  Another example would be a gravitational perturbation whose signature is primarily a nodal precession, which is a signal manifesting primarily as out-of-plane motions---we have seen that Brownian motion out of the orbital plane is $>40\times$ smaller than the $\phi$ component and grows at $T^{-1/2}$ instead of $T^{3/2},$ so the per-epoch $\sigma_\phi$ of Brownian noise will grossly overestimate its effect on the inference.
+If, for example, one is searching for the tidal force of a Planet X, this will be manifested primarily as a collective apsidal precession and a quadrupolar deviation of the orbit from its ellipse that does not evolve with time.  These are quite distinct from the random walk in $\Delta\tau$ that is the dominant effect of Brownian motion, and therefore Brownian noise will cause less degradation to the Planet X inference than the per-epoch $\sigma_\phi$ would suggest.  Another example would be a gravitational perturbation whose signature is primarily a nodal precession, which is a signal manifesting primarily as out-of-plane motions---we have seen that Brownian motion out of the orbital plane is $>40\times$ smaller than the $\phi$ component and grows at $T^{1/2}$ instead of $T^{3/2},$ so the per-epoch $\sigma_\phi$ of Brownian noise will grossly overestimate its effect on the inference.
 
 The algorithms used to make inferences based on range or astrometric
 data will need to be changed when Brownian motion becomes a
 significant source of error, to accomodate the fact that positional
 errors on a given tracer are highly correlated between epochs.  The
-full covariance matrix of the tracer's observations will be needed
+full covariance matrix of the Brownian model noise at the tracer's observations will be needed
 rather than typical practice of considering measurements as
 independent.  A small modification to our $\matB$ matrices would be
 needed to calculate the covariance of the Brownian noise between
@@ -887,75 +994,89 @@ particular deflector's mass error on the trajectories of the tracers
 it influences.
 
 A further difficulty in propagating unmodelled deflections into
-inferences is that the probability distribution of the position shifts
+inferences is that the probability distribution of the position shifts \edited{imposed on any given MBA}
 will be non-Gaussian, because the RMS is dominated by the
 contributions of relatively few encounters with the largest unmodelled
 asteroids.  The central limit theorem will not be applicable over
 decade timescales.
 
-A better approach, however, would probably be to increase the number
+A better approach \edited{to propagating this mutual-encounter noise into parameter influence would be} to increase the number
 $N$ of MBAs considered as active bodies in the ephemeris fitting,
 leaving their masses as free parameters whether or not we expect them
 to be constrained to $S/N\gtrsim1$ by the data.  Although the extreme
 case of having $N=O(10^6)$ active bodies' masses as free parameters in
 the ephemeris fit would be a substantial computational challenge,
-having $N=10^3$--$10^4$ should be manageable.  The MBA-to-MBA perturbations can be adequately calculated using Newtonian dynamics instead of a fully relativistic treatment.  In this approach, all of the covariances between different observations of the same tracer, and between tracers, will be captured in the analysis for deflections due to these $N$ deflectors.  If we \emph{choose $N$ to be large enough that the Brownian noise from the unmodelled MBAs is negligible to the error budget,} then we need not explicitly propagate the Brownian noise.
+having $N=10^3$--$10^4$ should be manageable.  The MBA-to-MBA perturbations can
+be adequately calculated using Newtonian dynamics instead of a fully
+relativistic treatment.  In this approach, all of the covariances between
+different observations of the same tracer, and between tracers, will be captured
+in the analysis for deflections due to these $N$ deflectors.  If we \emph{choose
+  $N$ to be large enough that the Brownian noise from the remainder of the MBAs is negligible to the error budget,} then we need not explicitly propagate the Brownian noise.  
 
-Figure~\ref{fig:result} shows us what $N$ would be required: the noise due to unmodelled deflectors is given by the point where each curve for a given $N$ departs from the upper-right envelope of the curves.   Increasing the number of MBAs in the ephemeris from $N=100\rightarrow10^3\rightarrow10^4$ decreases the RMS displacement in 10~yrs due to the unmodelled MBAs from $\sigma_\phi=1300\rightarrow60\rightarrow10$~m, with the radial and vertical RMS being substantially lower.  These correspond to 0.7, 0.03, and 0.005~mas, respectively.  Incorporating $N=1000$ MBAs into the ephemeris model would render noise from the rest of the asteroids unimportant for nearly all uses of Gaia or LSST MBA data for inference.  For occultation-based positions, one would probably want to have the $\approx3000$ most massive MBAs as active bodies with masses as free parameters in the ephemeris model in order to render encounters from unmodelled bodies as unimportant.
+\edited{The dotted lines in Figures~\ref{fig:result} and the bottom 2 rows of Table~\ref{tab:rms} show us what positional uncertainties arise purely from the effects of ignorance of MBA masses \emph{beyond} the brightest $N$ MBAs.} The noise due to unmodelled deflectors is given by the point where each curve for a given $N$ departs from the upper-right envelope of the curves.   Increasing the number of MBAs in the ephemeris \edited{to 3000, say, decreases the angular noise from other MBAs down to 20--90~\uas, and unless the true $M/L$ is at the high end of our range, this could be safely neglected for inferences from Gaia and LSST astrometry.
+For occultation-based positions, with their 50-100~m accuracy, one would probably want to have the $\approx10,000$ most massive MBAs as active bodies with masses as free parameters in the ephemeris model in order to render encounters from unmodelled bodies as unimportant; perhaps $>10^4$ would be needed if MBA $M/L$ values are high.}
 
 \subsection{Comparison to radiation forces}
-As we consider smaller MBAs as test particles, radiation pressure becomes larger relative to gravitational forces.  It is interesting to compare the effects of radiation pressure to those of Brownian motion to see when the former are a bigger source of noise than the latter, or contrarily to see whether Brownian motion interferes with attempts to measure radiation forces on MBAs.  At first order, radiation pressure from the Sun and the reaction from reflected sunlight cause a constant radial force on the MBA.  The ratio of this force to the gravitational force for an asteroid of radius $R,$ geometric albedo $q$, and density $\rho$ is $(1+q)\Psi,$ where
+As we consider smaller MBAs as test particles, radiation pressure becomes larger relative to gravitational forces.  It is interesting to compare the effects of radiation pressure to those of Brownian motion to see when the former are a bigger source of noise than the latter, or contrarily to see whether Brownian motion interferes with attempts to measure radiation forces on MBAs.  At first order, radiation pressure from the Sun and the reaction from reflected sunlight cause a constant radial force on the MBA.  The ratio of this force to the gravitational force for spherical Lambertian asteroid of radius $R,$ bolometric albedo $q$, and density $\rho$ is $(1+q)\Psi,$ where
+\edited{
 \begin{equation}
  \Psi \equiv \frac{F_{\rm rad}}{F_{\rm grav}} = \frac{\pi R^2 L_\odot/4\pi c}{4\pi GM_\odot R^3\rho/3}
    = \frac{3}{16\pi} \frac{L_\odot}{GM_\odot c R \rho} \approx
-   3\times10^{-10} \times 10^{0.2(H-16)},
-\end{equation}
-where the last expression adopts our standard values $q=0.25,
-\rho=2500\,{\rm kg}\, {\rm m}^{-3}.$ The primary observational consequence of
+   2\times10^{-11} \times 10^{0.2(H-10)},
+ \end{equation}
+ }
+where the last expression adopts \edited{a geometric albedo $q=0.15$ and 
+$\rho=2000\,{\rm kg}\, {\rm m}^{-3},$ which would yield our low-$M/L$ value of $M_{10}=2\times10^{-14}M_\odot.$}
+The primary observational consequence of
 this constant radial force is a time-independent, $H$-dependent 
 shift $\Delta r = -(1+q)\Psi a$ of the radial position a body should
 have at a given period.  
 This does not resemble
-any expected effect of Brownian motion, and also very difficult to
+any expected effect of Brownian motion, and is also very difficult to
 measure since radar ranging to MBAs is infeasible.  More important for
 observations is the
 Yarkovsky effect, in which anisotropic re-emission of the absorbed
 radiation leads to a net force that is a fraction $g_Y(1-q)$ of the
 incident radiation pressure.  The Yarkovsky effect has been detected
-for several NEAs but no individual MBAs, with values $g_Y \approx 0.1$
+at $g_Y\sim0.1$ for several NEAs, but not for any individual MBAs
 \citep[Yarkovsky effect and data are review by][]{yarkovsky}.
-\edited{A value of $g_Y\approx0.1$ is also the largest that can be obtained
+A value of $g_Y\approx0.1$ is also the largest that can be obtained
   from a model of a spherical body with uniform surface properties and
-  Lambertian emission.} This is also consistent with detections of the
+  Lambertian emission \citep{tremaine}, \edited{and this maximal value requires a spin axis
+  normal to the orbital plane.} This is also consistent with detections of  the
 Yarkovsky effect by examining the $\Delta a$ dependence on $H$ of
 members of asteroid \emph{families} in the Main Belt
-\citep[\eg][]{karin}.  \edited{We will assume an RMS value of $g_Y=0.05,$
-the influence of the surface absorption coefficient being $<1.$}
+\citep[\eg][]{karin}.  We will assume an RMS value of $g_Y=0.05.$
+
 
  The Yarkovsky effect has in common with Brownian noise that it has the strongest observable effects via changes to $a$ and the mean-motion rates, and that these changes can be of varying sign and amplitude for a given asteroid.  In the case of the Yarkovsky effect, this variability arises because of the random orientations of spin axes, and differences in spin rates, shapes, and surface properties.  
  
 Taking a case where the Yarkovsky force is in the prograde azimuthal direction, and using our system of units with $a=1$ and $v_c=1,$ this leads to a continuous power $dE/dt\approx g_Y\Psi$ which in turn implies $da/dt\approx2g_Y\Psi.$   The mean motion rate is hence $1-3 g_Y\Psi t$ and the accumulated shift in mean anomaly over time $T$ amounts to $\Delta\phi = -3 g_Y \Psi  T^2/2.$   In this case, a rough comparison of the accumulated $\Delta\phi$ from the Yarkovsky effect to the $\sigma_\phi$ of noise from unmodelled Brownian motion, after a time interval $T$, is
+\edited{
 \begin{equation}
 \frac{\textrm{Yarkovsky}}{\textrm{Brownian}} = 
    \frac{\Delta\phi}{\sigma_\phi} \approx \frac{ 3 g_Y \Psi
-     T^2/2}{\sqrt{3 T^3 \nIphi}} \approx \sqrt{T/10\,{\rm yr}} \times 10^{0.2(H-12.7)}
+     T^2/2}{\sqrt{3 T^3 \nIphi}} \approx \sqrt{T/10\,{\rm yr}} \times 10^{0.2(H-12.5)}
      \label{eq:yarkovsky}
 \end{equation}
-\edited{if we assume $\nIphi$ from the LSST-era knowledge of asteroid
-  masses.   For MBAs fainter than $H\approx12.7,$ or
-  $\lesssim7$~km in diameter, the RMS uncertainty in position from
-  Yarkovsky forces exceeds the Brownian motion noise.   With current-day knowledge
-  of asteroid masses, the threshold for Yarkovsky dominance is a bit
-  fainter than $H=12.7.$  The optimist's view of this is that Brownian
+if we assume $\nIphi$ from the LSST-era knowledge of asteroid
+masses and take the low value for $M_{10},$ which yields the higher Yarkovsky/Brownian ratio.}
+For MBAs fainter than \edited{$H\approx12.5,$ or
+  $\lesssim10$~km in diameter,} the RMS uncertainty in position from
+Yarkovsky forces exceeds the Brownian motion noise.
+%  With current-day knowledge
+%  of asteroid masses, the threshold for Yarkovsky dominance is a bit
+%  fainter than $H=12.7.$
+The optimist's view of this is that Brownian
   motion will not interfere with attempts to measure the Yarkovsky
-  effect on individual km-scale or smaller MBAs.  The pessimists view is that uncertainty in
- the  Yarkovsky effect will limit ephemeris accuracy before Brownian
-  motion will.  In either viewpoint, the steady $T^2$ accumulation of
+  effect on individual km-scale or smaller MBAs.  The pessimist's view is that uncertainty in
+ the  Yarkovsky effect \edited{will damage ephemeris accuracy more than Brownian
+  motion will for $H>12.5.$}  In either viewpoint, the steady $T^2$ accumulation of
   $\Delta\phi$ displacements from the Yarkovsky effect is
   distinguishable from the $T^{3/2}$ random walk of Brownian motion as
-  data quality and duration improve, so one separate these effects to
+  data quality and duration improve, so one can separate these effects to
   some extent when fitting an ephemeris---\citet{negin} quantify the
-  ability to distinguish the Yarkovsky effect from mutual encounters.}
+  ability to distinguish the Yarkovsky effect from mutual encounters.
 
 When Yarkovsky forces on MBAs are estimated using the $H$-dependent
 dispersion of $a$ for asteroid families, the effective ``observation''
@@ -966,44 +1087,63 @@ in diameter, which is why the technique is successful.
 
 \subsection{Summary}
 
-In conclusion, the Brownian motion from unmodelled or mis-modelled
+The Brownian motion from unmodelled or mis-modelled
 mutual impulses between MBAs causes RMS azimuthal displacements of
-$\approx2$~km (or 1 mas in angular position) over 10 years, with
+\edited{2--9~km, or 1--5 mas in observed position,} over 10 years, with
 current knowledge of the masses of large asteroids.  This is large
 enough to become a significant part of the error budget for many
-inferences from Gaia MBA astrometry.  The knowledge on large-MBA
+inferences from Gaia MBA astrometry.  \edited{The large spread of the estimate is primarily due to uncertainty in the masses of typical MBAs at a fixed absolute magnitude $H$.}
+
+The knowledge on large-MBA
 masses likely to be gained from LSST tracking of MBAs should reduce
-this by a factor of $\ge4,$ at which point the Brownian noise will be
-comparable to Gaia or LSST measurement uncertainties only for the
-brighter targets of each survey.  In all cases, the Brownian motion is
+this \edited{to 260--400~m, or 140--210~\uas, at which point the Brownian noise will be
+well below the single-epoch measurement uncertainties for all but the brightest
+Gaia targets and all LSST measurements.  This does not, however, necessarily
+render the Brownian noise insignificant, because it is correlated across years'
+worth of measurements for a given MBA whereas measurement errors are
+uncorrelated and average down.  It is, therefore, still important to propagate
+the uncertainty in mutual-encounter deflections through any Gaia or LSST
+inferences from precision MBA astrometry.  Full exploitation of the
+$\lesssim100$~m positional accuracy attainable through timing of MBA's
+occultations of Gaia stars will required improving our knowledge of MBA masses
+beyond the capabilities of the nominal 10-year LSST.}
+% comparable to Gaia or LSST measurement uncertainties only for the
+% brighter targets of each survey.
+In all cases, the Brownian motion is
 $\approx7\times$ smaller in the radial direction and $\approx45\times$
-in the vertical direction.  The RMS azimuthal and radial displacements
+in the vertical direction at $T=10$~yr.  The RMS azimuthal and radial displacements
 grow with time as $T^{3/2}$, and the vertical RMS as $T^{1/2}.$
 
 Making inferences from MBA astrometry becomes more complicated when
-Brownian motion is a significant contributor to the error budget, but
-a good path forward is to do all model fitting by including the
-$\approx1000$ largest MBAs as active bodies in the ephemeris model and
+Brownian motion is a significant contributor to the error budget, \edited{because of the
+correlations across observations and the non-Gaussian distribution of
+displacements at any given observation.}
+A good path forward is to do all model fitting by including the 1000--10,000
+largest MBAs as active bodies in the ephemeris model and
 leaving their masses as free parameters.  This will constrain the
 masses of these bodies to the full extent that the data allow, and
 will properly propagate any remaining uncertainty in those masses into
 the other inferences that one is trying to make.  The noise
-contributed by the remaining millions of unmodelled MBAs would be just
-$\approx60$~m RMS in the azimuthal direction (about 30~$\mu$as), and a
-few $\mu$as or less in the other axes, small enough to ignore entirely
-for the accuracy of imaging astrometry for the foreseeable future.
-Occultation-based astrometry is much more accurate (but has fewer
-possible measurements per tracer), and would be significantly impacted
-by Brownian motion until $\gtrsim1000$ MBAs have mass estimates at
-modest $S/N$ level, although the precise impact will depend on whether
-the signals one is seeking are parallel or orthogonal to the kind of
-variations caused by Brownian motion.  \edited{For objects
-  $\lesssim7$~km in diameter, uncertainties from mutual encounters are
+contributed by the remaining millions of unmodelled MBAs \edited{beyond the top
+  10,000} would be just 17--80~m RMS in the azimuthal direction (9--30~\uas), and a
+few \uas\ or less in the other axes, small enough to ignore entirely
+for the accuracy of imaging astrometry for the foreseeable future \edited{and not
+dominate the measurement errors for
+occultation-based astrometry.}
+%is much more accurate (but has fewer
+%possible measurements per tracer), and would be significantly impacted
+%by Brownian motion until $\gtrsim1000$ MBAs have mass estimates at
+%modest $S/N$ level, although
+\edited{The precise impact that the Brownian noise will have on future
+inferences from  precision MBA astrometry will depend, first, on what the masses
+of the typical $8<H<15$ MBAs are, but also on whether
+the position-vs-time signals one is trying to infer are parallel or orthogonal to the kind of
+variations caused by Brownian motion.  For objects with $H>12.5$ 
+ (diameter $\lesssim10$~km),} uncertainties from mutual encounters are
   smaller than uncertainties from the Yarkovsky effect over decade
-  timescales, at near-future levels of knowledge of asteroid masses.
+  timescales, at LSST levels of knowledge of asteroid masses. For such MBAs,
   Yarkovsky forces must be included in dynamical models in order to
-  reach the precision levels where Brownian motion becomes a limitation.}
-
+  reach the precision levels where Brownian motion becomes a limitation.
 
 \begin{acknowledgments}
   This work was supported by NSF grant AST-2205808.  GMB is grateful for
